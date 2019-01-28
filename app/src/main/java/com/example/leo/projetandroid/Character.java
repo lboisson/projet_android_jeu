@@ -1,4 +1,4 @@
 package com.example.leo.projetandroid;
 
-public class Character {
+public class Character { // JESUISPASSELA
 }
