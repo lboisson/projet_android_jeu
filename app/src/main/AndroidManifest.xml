@@ -13,6 +13,9 @@
         <activity android:name=".Display.GameDisplay">
         </activity>
 
+        <activity android:name=".Display.OptionDisplay">
+        </activity>
+
         <activity android:name=".Display.IntroMenuDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
