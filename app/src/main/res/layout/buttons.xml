@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    OBJECT BUTTON   -->
+    <FrameLayout
+        android:id="@+id/button_object"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_bag">
+        <Button
+            android:id="@+id/background_button_object"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:onClick="useObject"/>
+        <ImageView
+            android:id="@+id/icon_button_object"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/buttonlabel_object" />
+    </FrameLayout>
+
+    <!--    BAG BUTTON   -->
+    <FrameLayout
+        android:id="@+id/button_bag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_object"
+        app:layout_constraintEnd_toStartOf="@+id/button_you">
+        <Button
+            android:id="@+id/background_button_bag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:onClick="ActivityToInventoryDisplay"/>
+
+        <ImageView
+            android:id="@+id/icon_button_bag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/buttonlabel_bag" />
+    </FrameLayout>
+
+    <!--    YOU BUTTON   -->
+    <FrameLayout
+        android:id="@+id/button_you"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_bag"
+        app:layout_constraintEnd_toStartOf="@+id/button_map">
+        <Button
+            android:id="@+id/background_button_you"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:onClick="ActivityToCharacterDisplay"/>
+        <ImageView
+            android:id="@+id/icon_button_you"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/buttonlabel_you" />
+    </FrameLayout>
+
+    <!--    MAP BUTTON   -->
+    <FrameLayout
+        android:id="@+id/button_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_you"
+        app:layout_constraintEnd_toEndOf="parent">
+        <Button
+            android:id="@+id/background_button_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:onClick="ActivityToMapDisplay"/>
+        <ImageView
+            android:id="@+id/icon_button_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/buttonlabel_map" />
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
