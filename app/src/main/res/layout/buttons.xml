@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:onClick="useObject"/>
+            android:onClick="ObjectButton"/>
         <ImageView
             android:id="@+id/icon_button_object"
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:onClick="ActivityToInventoryDisplay"/>
+            android:onClick="InventoryButton"/>
 
         <ImageView
             android:id="@+id/icon_button_bag"
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:onClick="ActivityToCharacterDisplay"/>
+            android:onClick="CharacterButton"/>
         <ImageView
             android:id="@+id/icon_button_you"
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:onClick="ActivityToMapDisplay"/>
+            android:onClick="MapButton"/>
         <ImageView
             android:id="@+id/icon_button_map"
             android:layout_width="match_parent"
