@@ -1,13 +1,21 @@
 package com.example.leo.projetandroid.Display;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.leo.projetandroid.Character;
+import com.example.leo.projetandroid.Inventory;
+import com.example.leo.projetandroid.Display.ButtonsDisplay;
 import com.example.leo.projetandroid.R;
 
-public class GameDisplay extends Activity {
+public class GameDisplay extends ButtonsDisplay {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,17 +26,46 @@ public class GameDisplay extends Activity {
         setSpriteHeight();
     }
 
+    /**
+     * go to the Inventory activity
+     * @param v
+     */
+    public void ActivityToInventoryDisplay(View v){
+        Intent intent = new Intent(this, InventoryDisplay.class);
+        startActivity(intent);
+    }
 
     /**
-     * used to set the size of the bottom buttons
-     * @return 1/4 of the width of the screen
+     * go to the map activity
+     * @param v
      */
-    public int getWidthOfButton(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return ((size.x)/4);
+    public void ActivityToMapDisplay(View v){
+        Intent intent = new Intent(this, MapDisplay.class);
+        startActivity(intent);
     }
+
+    /**
+     * go to the character activity
+     * @param v
+     */
+    public void ActivityToCharacterDisplay(View v){
+        Intent intent = new Intent(this, CharacterDisplay.class);
+        startActivity(intent);
+    }
+
+    /**
+     * use the equiped object
+     */
+    public void useObject(View v) {
+        Context context = getApplicationContext();
+
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, "Using your object", duration);
+        toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
+        toast.show();
+    }
+
 
     /**
      *
@@ -38,9 +75,13 @@ public class GameDisplay extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        return ((size.y)-getWidthOfButton());
+        return ((size.y)-(size.x)/4);
     }
 
+    /**
+     *
+     * @return the width for the sprites (which is the width of the screen)
+     */
     public int getWidthOfSprites(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -48,32 +89,7 @@ public class GameDisplay extends Activity {
         return size.x;
     }
 
-    /**
-     * Set the size of the buttons according the the screen width
-     * (each button width and height is 1/4 of the screen width)
-     */
-    private void setButtonSize(){
-        int size = (int)getWidthOfButton();
-        android.view.ViewGroup.LayoutParams params_1 = findViewById(R.id.button_1).getLayoutParams();
-        params_1.height = size;
-        params_1.width = size;
-        findViewById(R.id.button_1).setLayoutParams(params_1);
 
-        android.view.ViewGroup.LayoutParams params_2 = findViewById(R.id.button_2).getLayoutParams();
-        params_2.height = size;
-        params_2.width = size;
-        findViewById(R.id.button_2).setLayoutParams(params_2);
-
-        android.view.ViewGroup.LayoutParams params_3 = findViewById(R.id.button_3).getLayoutParams();
-        params_3.height = size;
-        params_3.width = size;
-        findViewById(R.id.button_3).setLayoutParams(params_3);
-
-        android.view.ViewGroup.LayoutParams params_4 = findViewById(R.id.button_4).getLayoutParams();
-        params_4.height = size;
-        params_4.width = size;
-        findViewById(R.id.button_4).setLayoutParams(params_4);
-    }
 
     private void setSpriteHeight(){
         int height = (int)getHeightOfSprites();

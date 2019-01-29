@@ -1,4 +1,17 @@
 package com.example.leo.projetandroid.Display;
 
-public class MapDisplay {
+import android.app.Activity;
+import android.os.Bundle;
+
+import com.example.leo.projetandroid.R;
+
+public class MapDisplay extends ButtonsDisplay {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_map_display);
+
+        setButtonSize();
+    }
+
 }
