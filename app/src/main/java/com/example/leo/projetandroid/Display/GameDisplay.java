@@ -1,18 +1,9 @@
 package com.example.leo.projetandroid.Display;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.leo.projetandroid.Character;
-import com.example.leo.projetandroid.Inventory;
-import com.example.leo.projetandroid.Display.ButtonsDisplay;
 import com.example.leo.projetandroid.R;
 
 public class GameDisplay extends ButtonsDisplay {
@@ -24,46 +15,6 @@ public class GameDisplay extends ButtonsDisplay {
 
         setButtonSize();
         setSpriteHeight();
-    }
-
-    /**
-     * go to the Inventory activity
-     * @param v
-     */
-    public void ActivityToInventoryDisplay(View v){
-        Intent intent = new Intent(this, InventoryDisplay.class);
-        startActivity(intent);
-    }
-
-    /**
-     * go to the map activity
-     * @param v
-     */
-    public void ActivityToMapDisplay(View v){
-        Intent intent = new Intent(this, MapDisplay.class);
-        startActivity(intent);
-    }
-
-    /**
-     * go to the character activity
-     * @param v
-     */
-    public void ActivityToCharacterDisplay(View v){
-        Intent intent = new Intent(this, CharacterDisplay.class);
-        startActivity(intent);
-    }
-
-    /**
-     * use the equiped object
-     */
-    public void useObject(View v) {
-        Context context = getApplicationContext();
-
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, "Using your object", duration);
-        toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
-        toast.show();
     }
 
 
