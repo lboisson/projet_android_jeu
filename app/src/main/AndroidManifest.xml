@@ -16,6 +16,15 @@
         <activity android:name=".Display.OptionDisplay">
         </activity>
 
+        <activity android:name=".Display.CharacterDisplay">
+        </activity>
+
+        <activity android:name=".Display.InventoryDisplay">
+        </activity>
+
+        <activity android:name=".Display.MapDisplay">
+        </activity>
+
         <activity android:name=".Display.IntroMenuDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
