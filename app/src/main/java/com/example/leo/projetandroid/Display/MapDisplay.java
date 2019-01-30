@@ -20,12 +20,31 @@ public class MapDisplay extends ButtonsDisplay {
     }
 
     /**
-     * overload the map button to go back to game
+     * go to the Inventory activity
+     * @param v
+     */
+    public void InventoryButton(View v){
+        Intent intent = new Intent(this, InventoryDisplay.class);
+        startActivity(intent);
+        this.finish();
+    }
+
+    /**
+     * go to the map activity
      * @param v
      */
     public void MapButton(View v){
-        Intent intent = new Intent(this, GameDisplay.class);
+        this.finish();
+    }
+
+    /**
+     * go to the character activity
+     * @param v
+     */
+    public void CharacterButton(View v){
+        Intent intent = new Intent(this, CharacterDisplay.class);
         startActivity(intent);
+        this.finish();
     }
 
 }

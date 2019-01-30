@@ -25,6 +25,8 @@ public class IntroMenuDisplay extends Activity {
 
         writeIntoPreferences();
         startActivity(intent);
+
+        this.finish();
     }
 
     public void ActivityToOption(View v){
