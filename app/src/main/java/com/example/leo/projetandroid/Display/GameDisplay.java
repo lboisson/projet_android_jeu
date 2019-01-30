@@ -7,14 +7,19 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 
+import com.example.leo.projetandroid.Game;
 import com.example.leo.projetandroid.R;
 
 public class GameDisplay extends ButtonsDisplay {
+
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_display);
+
+        Game game = Game.getInstance();
 
         setButtonSize();
         setSpriteHeight();
