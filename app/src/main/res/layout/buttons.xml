@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <!--    OBJECT BUTTON   -->
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/button_object"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -26,10 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/buttonlabel_object" />
-    </FrameLayout>
+    </RelativeLayout>
 
     <!--    BAG BUTTON   -->
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/button_bag"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -50,10 +50,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/buttonlabel_bag" />
-    </FrameLayout>
+    </RelativeLayout>
 
     <!--    YOU BUTTON   -->
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/button_you"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -73,10 +73,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/buttonlabel_you" />
-    </FrameLayout>
+    </RelativeLayout>
 
     <!--    MAP BUTTON   -->
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/button_map"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -96,6 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/buttonlabel_map" />
-    </FrameLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
