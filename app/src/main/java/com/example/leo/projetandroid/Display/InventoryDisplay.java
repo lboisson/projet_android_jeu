@@ -14,6 +14,8 @@ public class InventoryDisplay extends ButtonsDisplay {
         setContentView(R.layout.activity_inventory_display);
 
         setButtonSize();
+
+        findViewById(R.id.button_bag).setBackgroundResource(R.drawable.button_clicked);
     }
 
     /**

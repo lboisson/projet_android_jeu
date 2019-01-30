@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.leo.projetandroid.R;
 
@@ -14,6 +15,8 @@ public class MapDisplay extends ButtonsDisplay {
         setContentView(R.layout.activity_map_display);
 
         setButtonSize();
+
+        findViewById(R.id.button_map).setBackgroundResource(R.drawable.button_clicked);
     }
 
     /**

@@ -15,6 +15,8 @@ public class CharacterDisplay extends ButtonsDisplay {
         setContentView(R.layout.activity_character_display);
 
         setButtonSize();
+
+        findViewById(R.id.button_you).setBackgroundResource(R.drawable.button_clicked);
     }
 
     /**
