@@ -1,9 +1,12 @@
 package com.example.leo.projetandroid.Display;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+
 import com.example.leo.projetandroid.R;
 
 public class GameDisplay extends ButtonsDisplay {
@@ -40,7 +43,24 @@ public class GameDisplay extends ButtonsDisplay {
         return size.x;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.quit_text)
+                .setCancelable(false)
+                .setPositiveButton(R.string.quit_yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        GameDisplay.this.finish();
+                    }
+                })
+                .setNegativeButton(R.string.quit_no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     private void setSpriteHeight(){
         int height = (int)getHeightOfSprites();
