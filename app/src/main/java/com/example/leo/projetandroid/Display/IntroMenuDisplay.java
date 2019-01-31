@@ -22,6 +22,7 @@ public class IntroMenuDisplay extends Activity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        recreate();
         Intent refresh = new Intent(this, IntroMenuDisplay.class);
         startActivity(refresh);
         this.finish();
