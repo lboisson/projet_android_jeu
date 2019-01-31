@@ -14,12 +14,7 @@
         <activity android:name=".Display.GameDisplay">
         </activity>
 
-        <activity
-            android:name=".Display.OptionDisplay"
-            android:parentActivityName=".Display.IntroMenuDisplay" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Display.IntroMenuDisplay" />
+        <activity android:name=".Display.OptionDisplay">
         </activity>
 
         <activity android:name=".Display.CharacterDisplay">

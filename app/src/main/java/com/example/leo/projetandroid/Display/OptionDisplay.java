@@ -19,11 +19,6 @@ public class OptionDisplay extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_optionmenu_display);
-
-        /*if ( Locale.getDefault().toString().equals( "fr_FR" ) ) {
-            RadioGroup buttonGroup = findViewById(R.id.button_group);
-            buttonGroup.check( R.id.button_french );
-        }*/
     }
 
     @Override

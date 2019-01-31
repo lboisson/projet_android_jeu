@@ -3,6 +3,7 @@ package com.example.leo.projetandroid.Display;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.R;
+
+import java.util.Locale;
 
 public class IntroMenuDisplay extends Activity {
 
