@@ -1,6 +1,5 @@
 package com.example.leo.projetandroid.Display;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Point;

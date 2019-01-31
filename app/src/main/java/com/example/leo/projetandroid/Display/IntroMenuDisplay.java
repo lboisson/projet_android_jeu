@@ -3,19 +3,13 @@ package com.example.leo.projetandroid.Display;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.leo.projetandroid.R;
-
-import java.util.Locale;
 
 public class IntroMenuDisplay extends Activity {
 
@@ -59,7 +53,7 @@ public class IntroMenuDisplay extends Activity {
     }
 
     /**
-     * write the size of the button into shared preferences, so that the game doesnt have to get it  again
+     * write the size of the button into shared preferences, so that the game doesn't have to get it  again
      */
     private void writeIntoPreferences(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
