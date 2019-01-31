@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alptraum</string>
+    <string name="intro_menu_play">Jouer</string>
+    <string name="intro_menu_opt">Options</string>
+    <string name="quit_text">Voulez vous fermer le jeu ?</string>
+    <string name="quit_yes">Oui</string>
+    <string name="quit_no">Non</string>
+</resources>

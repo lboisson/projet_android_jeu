@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">projet android</string>
+    <string name="app_name">Alptraum</string>
+    <string name="intro_menu_play">Play</string>
+    <string name="intro_menu_opt">Options</string>
     <string name="quit_text">Do you want to close the game ?</string>
     <string name="quit_yes">Yes</string>
     <string name="quit_no">No</string>
