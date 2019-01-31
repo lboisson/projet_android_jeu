@@ -3,6 +3,8 @@
     <string name="app_name">Alptraum</string>
     <string name="intro_menu_play">Jouer</string>
     <string name="intro_menu_opt">Options</string>
+    <string name="option_menu_french">Français</string>
+    <string name="option_menu_english">Anglais</string>
     <string name="quit_text">Voulez vous fermer le jeu ?</string>
     <string name="quit_yes">Oui</string>
     <string name="quit_no">Non</string>

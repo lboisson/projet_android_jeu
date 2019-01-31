@@ -22,6 +22,14 @@ public class IntroMenuDisplay extends Activity {
         setContentView(R.layout.activity_intromenu_display);
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent refresh = new Intent(this, IntroMenuDisplay.class);
+        startActivity(refresh);
+        this.finish();
+    }
+
     public void ActivityToGameDisplay(View v){
         Intent intent = new Intent(this, GameDisplay.class);
 
