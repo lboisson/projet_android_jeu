@@ -23,7 +23,7 @@ public class InventoryDisplay extends ButtonsDisplay {
      * @param v
      */
     public void InventoryButton(View v){
-        this.finish();
+        finish();
     }
 
     /**
@@ -33,7 +33,7 @@ public class InventoryDisplay extends ButtonsDisplay {
     public void MapButton(View v){
         Intent intent = new Intent(this, MapDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 
     /**
@@ -43,6 +43,6 @@ public class InventoryDisplay extends ButtonsDisplay {
     public void CharacterButton(View v){
         Intent intent = new Intent(this, CharacterDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 }

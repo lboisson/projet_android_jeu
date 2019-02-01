@@ -24,16 +24,14 @@ public class MapDisplay extends ButtonsDisplay {
     public void InventoryButton(View v){
         Intent intent = new Intent(this, InventoryDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 
     /**
      * go to the map activity
      * @param v
      */
-    public void MapButton(View v){
-        this.finish();
-    }
+    public void MapButton(View v){ finish(); }
 
     /**
      * go to the character activity
@@ -42,7 +40,7 @@ public class MapDisplay extends ButtonsDisplay {
     public void CharacterButton(View v){
         Intent intent = new Intent(this, CharacterDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 
 }

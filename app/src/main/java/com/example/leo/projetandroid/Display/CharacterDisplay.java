@@ -25,7 +25,7 @@ public class CharacterDisplay extends ButtonsDisplay {
     public void InventoryButton(View v){
         Intent intent = new Intent(this, InventoryDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 
     /**
@@ -35,7 +35,7 @@ public class CharacterDisplay extends ButtonsDisplay {
     public void MapButton(View v){
         Intent intent = new Intent(this, MapDisplay.class);
         startActivity(intent);
-        this.finish();
+        finish();
     }
 
     /**
@@ -43,6 +43,6 @@ public class CharacterDisplay extends ButtonsDisplay {
      * @param v
      */
     public void CharacterButton(View v){
-        this.finish();
+        finish();
     }
 }

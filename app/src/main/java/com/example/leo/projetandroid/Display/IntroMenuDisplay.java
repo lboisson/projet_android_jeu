@@ -43,7 +43,7 @@ public class IntroMenuDisplay extends Activity {
         recreate();
         Intent refresh = new Intent(this, IntroMenuDisplay.class);
         startActivity(refresh);
-        this.finish();
+        finish();
     }
 
     public void ActivityToGameDisplay(View v){
@@ -52,7 +52,7 @@ public class IntroMenuDisplay extends Activity {
         writeIntoPreferences();
         startActivity(intent);
 
-        this.finish();
+        finish();
     }
 
     public void ActivityToOption(View v){
