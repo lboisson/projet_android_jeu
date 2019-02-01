@@ -56,7 +56,7 @@ public class GameDisplay extends ButtonsDisplay {
                 .setCancelable(false)
                 .setPositiveButton(R.string.quit_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        GameDisplay.this.finish();
+                        finish();
                     }
                 })
                 .setNegativeButton(R.string.quit_no, new DialogInterface.OnClickListener() {
