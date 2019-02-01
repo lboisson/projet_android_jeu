@@ -26,7 +26,6 @@ public class GameDisplay extends ButtonsDisplay {
 
 
     /**
-     *
      * @return the height of the sprites (the height of the screen minus the height of the buttons).
      */
     public int getHeightOfSprites(){
@@ -48,6 +47,9 @@ public class GameDisplay extends ButtonsDisplay {
     }
 
     @Override
+    /**
+     * action when back button is pressed
+     */
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.quit_text)
@@ -66,6 +68,9 @@ public class GameDisplay extends ButtonsDisplay {
         alert.show();
     }
 
+    /**
+     * set the size for the sprites
+     */
     private void setSpriteHeight(){
         int height = (int)getHeightOfSprites();
         int width =  (int)getWidthOfSprites();
@@ -98,6 +103,5 @@ public class GameDisplay extends ButtonsDisplay {
         findViewById(R.id.floor).setLayoutParams(params_floor);
 
     }
-
 
 }
