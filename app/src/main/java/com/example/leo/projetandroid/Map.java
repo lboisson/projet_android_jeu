@@ -8,9 +8,12 @@ public class Map {
     //the list of rooms. first room start at 0.
     private List<Room> listRoom = new ArrayList<>();
 
+
     //used for the singleton implementation
     private static Map instance;
-    private Map(){ }
+    private Map(){
+        listRoom.add(new Room(0,0));
+    }
 
     /**
      * Usage of the singleton pattern for the Map class
