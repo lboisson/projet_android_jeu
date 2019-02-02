@@ -9,6 +9,8 @@ import android.view.Display;
 import com.example.leo.projetandroid.Game;
 import com.example.leo.projetandroid.R;
 
+import java.lang.reflect.Field;
+
 public class GameDisplay extends ButtonsDisplay {
 
     private Game game;
@@ -20,7 +22,10 @@ public class GameDisplay extends ButtonsDisplay {
 
         Game game = Game.getInstance();
 
+
         setButtonSize();
+
+        setSpriteNames(game);
         setSpriteHeight();
     }
 
@@ -102,6 +107,30 @@ public class GameDisplay extends ButtonsDisplay {
         params_floor.width = width;
         findViewById(R.id.floor).setLayoutParams(params_floor);
 
+    }
+
+    private void setSpriteNames(Game game){
+        int wall_east_ressource = getResId(game.wall_east_ressource(), R.drawable.class);
+
+
+        findViewById(R.id.wall_east).setBackgroundResource(wall_east_ressource);
+    }
+
+    /**
+     * get the ID of a ressource from its name
+     * @param resName
+     * @param c
+     * @return
+     */
+    public static int getResId(String resName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 }

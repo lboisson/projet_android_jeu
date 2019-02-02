@@ -9,8 +9,13 @@ public class Map {
     private List<Room> listRoom = new ArrayList<>();
 
 
+
     //used for the singleton implementation
     private static Map instance;
+
+    /**
+     * constructor
+     */
     private Map(){
         listRoom.add(new Room(0,0));
     }
@@ -25,5 +30,9 @@ public class Map {
 
         }
         return instance;
+    }
+
+    public Room getRoom(int index){
+        return this.listRoom.get(index);
     }
 }
