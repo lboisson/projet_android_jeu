@@ -20,12 +20,12 @@ public class GameDisplay extends ButtonsDisplay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_display);
 
-        Game game = Game.getInstance();
+        this.game = Game.getInstance();
 
 
         setButtonSize();
 
-        setSpriteNames(game);
+        setRoomSpritesNames(game);
         setSpriteHeight();
     }
 
@@ -109,21 +109,30 @@ public class GameDisplay extends ButtonsDisplay {
 
     }
 
-    private void setSpriteNames(Game game){
-        int wall_east_ressource = getResId(game.wall_east_ressource(), R.drawable.class);
-
+    /**
+     * Set the name of the sprites for the room the character is in
+     */
+    private void setRoomSpritesNames(Game game){
+        int wall_east_ressource = getResId(this.game.wall_east_ressource(), R.drawable.class);
+        int wall_west_ressource = getResId(this.game.wall_west_ressource(), R.drawable.class);
+        int wall_north_ressource = getResId(this.game.wall_north_ressource(), R.drawable.class);
+        int wall_south_ressource = getResId(this.game.wall_south_ressource(), R.drawable.class);
+        int floor_ressource = getResId(this.game.floor_ressource(), R.drawable.class);
 
         findViewById(R.id.wall_east).setBackgroundResource(wall_east_ressource);
+        findViewById(R.id.wall_west).setBackgroundResource(wall_west_ressource);
+        findViewById(R.id.wall_north).setBackgroundResource(wall_north_ressource);
+        findViewById(R.id.wall_south).setBackgroundResource(wall_south_ressource);
+        findViewById(R.id.floor).setBackgroundResource(floor_ressource);
     }
 
     /**
      * get the ID of a ressource from its name
-     * @param resName
-     * @param c
-     * @return
+     * @param resName the name of the ressource you want the ID
+     * @param c the class of the ressource you want the idea of
+     * @return the ID of the ressource
      */
     public static int getResId(String resName, Class<?> c) {
-
         try {
             Field idField = c.getDeclaredField(resName);
             return idField.getInt(idField);

@@ -29,4 +29,20 @@ public class Room {
         return this.wall_east;
     }
 
+    public String get_wall_west(){
+        return this.wall_west;
+    }
+
+    public String get_wall_north(){
+        return this.wall_north;
+    }
+
+    public String get_wall_south(){
+        return this.wall_south;
+    }
+
+    public String get_floor(){
+        return this.floor;
+    }
+
 }

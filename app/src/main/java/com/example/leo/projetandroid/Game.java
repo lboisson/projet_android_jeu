@@ -35,4 +35,20 @@ public class Game {
         return this.character.get_actual_room().get_wall_east();
     }
 
+    public String wall_west_ressource() {
+        return this.character.get_actual_room().get_wall_west();
+    }
+
+    public String wall_north_ressource() {
+        return this.character.get_actual_room().get_wall_north();
+    }
+
+    public String wall_south_ressource() {
+        return this.character.get_actual_room().get_wall_south();
+    }
+
+    public String floor_ressource() {
+        return this.character.get_actual_room().get_floor();
+    }
+
 }
