@@ -23,17 +23,6 @@ public class IntroMenuDisplay extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this );
-        String lang = myPreferences.getString("APP_LANG", "findFAIL");
-        if ( !( lang.equals("findFail") ) && !( lang.equals( Locale.getDefault().getLanguage() ) ) ) {
-            Locale myLocale = new Locale( lang );
-            Resources res = getResources();
-            DisplayMetrics dm = res.getDisplayMetrics();
-            Configuration conf = res.getConfiguration();
-            conf.locale = myLocale;
-            res.updateConfiguration(conf, dm);
-        }
-
         setContentView(R.layout.activity_intromenu_display);
     }
 
@@ -48,8 +37,6 @@ public class IntroMenuDisplay extends Activity {
 
     public void ActivityToGameDisplay(View v){
         Intent intent = new Intent(this, GameDisplay.class);
-
-        writeIntoPreferences();
         startActivity(intent);
 
         finish();
@@ -59,27 +46,5 @@ public class IntroMenuDisplay extends Activity {
         Intent intent = new Intent(this, OptionDisplay.class);
         startActivity(intent);
     }
-
-    /**
-     * used to set the size of the bottom buttons
-     * @return 1/4 of the width of the screen
-     */
-    private int getWidthOfButton(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return ((size.x)/4);
-    }
-
-    /**
-     * write the size of the button into shared preferences, so that the game doesn't have to get it  again
-     */
-    private void writeIntoPreferences(){
-        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor myEditor = myPreferences.edit();
-        myEditor.putInt("BUTTON_SIZE", getWidthOfButton());
-        myEditor.commit();
-    }
-
 
 }
