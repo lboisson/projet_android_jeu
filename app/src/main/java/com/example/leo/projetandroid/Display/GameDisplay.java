@@ -1,34 +1,52 @@
 package com.example.leo.projetandroid.Display;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.widget.Toast;
 
+import com.example.leo.projetandroid.DBContractTest.*;
 import com.example.leo.projetandroid.Game;
 import com.example.leo.projetandroid.R;
 
 import java.lang.reflect.Field;
 
+
 public class GameDisplay extends ButtonsDisplay {
 
     private Game game;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_display);
 
         this.game = Game.getInstance();
-
+        this.game.ADB = openOrCreateDatabase(
+                "ADB.db"
+                , SQLiteDatabase.CREATE_IF_NECESSARY
+                , null
+        );
 
         setButtonSize();
 
         setRoomSpritesNames(game);
         setSpriteHeight();
+
+        Toast.makeText(this, "Number of rows saved : " + game.getNumberOfRows() + ".", Toast.LENGTH_LONG).show();
+
     }
 
+    @Override
+    protected void onDestroy() {
+        this.game.saveEverything();
+        super.onDestroy();
+    }
 
     /**
      * @return the height of the sprites (the height of the screen minus the height of the buttons).

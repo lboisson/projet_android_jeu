@@ -6,8 +6,9 @@ import java.util.List;
 public class Map {
 
     //the list of rooms. first room start at 0.
-    private List<Room> listRoom = new ArrayList<>();
-
+    public List<Room> listRoom = new ArrayList<>();
+    public List<Room> listRoomCreatedThisInstance = new ArrayList<>();
+    public int numberOfRoom = 0;
 
 
     //used for the singleton implementation
@@ -17,7 +18,9 @@ public class Map {
      * constructor
      */
     private Map(){
-        listRoom.add(new Room(0,0));
+        Room room = new Room(0,0 );
+        listRoom.add( room );
+        listRoomCreatedThisInstance.add( room );
     }
 
     /**
@@ -27,12 +30,14 @@ public class Map {
     public static synchronized Map getInstance(){
         if(instance == null){
             instance = new Map();
-
         }
         return instance;
     }
 
     public Room getRoom(int index){
+        if ( index > numberOfRoom ) {
+            return this.listRoom.get(0); // Return room 0 by default
+        }
         return this.listRoom.get(index);
     }
 }

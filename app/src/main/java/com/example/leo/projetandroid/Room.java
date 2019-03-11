@@ -8,11 +8,11 @@ public class Room {
     private int numberOfSprites = 2;
 
     // the coordinates of the room (used for the map_display)
-    private int latitude;
-    private int longitude;
+    public int latitude;
+    public int longitude;
 
     // the name of the sprites used for this particular room
-    private String floor, wall_east, wall_west, wall_north, wall_south;
+    public String floor, wall_east, wall_west, wall_north, wall_south;
 
     /**
      * constructor of the Room class
