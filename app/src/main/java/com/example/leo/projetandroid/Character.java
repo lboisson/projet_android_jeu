@@ -3,12 +3,24 @@ package com.example.leo.projetandroid;
 public class Character {
 
     private Room actual_room;
+    private String characterSprite;
+
+    //position of the character in his actual_room
+    private int roomY;
+    private int roomX;
+
+
 
     //used for the singleton implementation
     private static Character instance;
     private Character(Room room){
 
         this.actual_room = room;
+        this.characterSprite = "character";
+
+        this.roomX = 7;
+        this.roomY = 7;
+
     }
 
     /**
@@ -22,8 +34,21 @@ public class Character {
         return instance;
     }
 
-    public Room get_actual_room(){
+    public Room getActualRoom(){
         return this.actual_room;
     }
+
+    public String getCharacterSprite(){
+        return this.characterSprite;
+    }
+
+    public int getRoomY(){
+        return this.roomY;
+    }
+
+    public int getRoomX(){
+        return this.roomX;
+    }
+
 
 }

@@ -85,23 +85,23 @@ public class Game {
     }
 
     public String wall_east_ressource() {
-        return this.character.get_actual_room().get_wall_east();
+        return this.character.getActualRoom().get_wall_east();
     }
 
     public String wall_west_ressource() {
-        return this.character.get_actual_room().get_wall_west();
+        return this.character.getActualRoom().get_wall_west();
     }
 
     public String wall_north_ressource() {
-        return this.character.get_actual_room().get_wall_north();
+        return this.character.getActualRoom().get_wall_north();
     }
 
     public String wall_south_ressource() {
-        return this.character.get_actual_room().get_wall_south();
+        return this.character.getActualRoom().get_wall_south();
     }
 
     public String floor_ressource() {
-        return this.character.get_actual_room().get_floor();
+        return this.character.getActualRoom().get_floor();
     }
 
 }
