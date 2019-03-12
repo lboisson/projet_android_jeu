@@ -1,10 +1,15 @@
 package com.example.leo.projetandroid;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.content.Context;
+
 public class Game {
 
     private Inventory inventory;
     private Character character;
     private Map map;
+
 
     //used for the singleton implementation
     private static Game instance;
@@ -15,6 +20,8 @@ public class Game {
         this.map = Map.getInstance();
 
         this.character = Character.getInstance(map.getRoom(0));
+
+
     }
 
 
@@ -31,24 +38,38 @@ public class Game {
 
     }
 
-    public String wall_east_ressource() {
-        return this.character.get_actual_room().get_wall_east();
+    //        GETTERS         //
+
+    public String getWallEastRessource() {
+        return this.character.getActualRoom().get_wall_east();
     }
 
-    public String wall_west_ressource() {
-        return this.character.get_actual_room().get_wall_west();
+    public String getWallWestRessource() {
+        return this.character.getActualRoom().get_wall_west();
     }
 
-    public String wall_north_ressource() {
-        return this.character.get_actual_room().get_wall_north();
+    public String getWallNorthRessource() {
+        return this.character.getActualRoom().get_wall_north();
     }
 
-    public String wall_south_ressource() {
-        return this.character.get_actual_room().get_wall_south();
+    public String getWallSouthRessource() {
+        return this.character.getActualRoom().get_wall_south();
     }
 
-    public String floor_ressource() {
-        return this.character.get_actual_room().get_floor();
+    public String getFloorRessource() {
+        return this.character.getActualRoom().get_floor();
+    }
+
+    public String getCharacterSprite(){
+        return this.character.getCharacterSprite();
+    }
+
+    public int getCharacterX(){
+        return this.character.getRoomX();
+    }
+
+    public int getCharacterY(){
+        return this.character.getRoomY();
     }
 
 }

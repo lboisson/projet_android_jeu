@@ -21,7 +21,7 @@ public class Room {
         this.latitude = latitude;
         this.longitude = longitude;
 
-        //TODO : random assignement of sprites for the floor, walls, doors
+
         this.floor = generateNameRandomSprite("floor");
         this.wall_east = generateNameRandomSprite("wall_east");
         this.wall_west = generateNameRandomSprite("wall_west");
