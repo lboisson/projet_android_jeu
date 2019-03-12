@@ -20,6 +20,7 @@ public class ButtonsDisplay extends Activity {
     public void setButtonSize(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int size = myPreferences.getInt("BUTTON_SIZE", 0);
+
         android.view.ViewGroup.LayoutParams params_1 = findViewById(R.id.button_object).getLayoutParams();
         params_1.height = size;
         params_1.width = size;
