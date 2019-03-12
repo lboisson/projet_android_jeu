@@ -2,18 +2,22 @@ package com.example.leo.projetandroid.Display;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Point;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Display;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.leo.projetandroid.Game;
 import com.example.leo.projetandroid.R;
-
 import java.lang.reflect.Field;
+
 
 public class GameDisplay extends ButtonsDisplay {
 
     private Game game;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,33 +27,21 @@ public class GameDisplay extends ButtonsDisplay {
         this.game = Game.getInstance();
 
 
+        //set the buttons
         setButtonSize();
 
+        //set the sprites for the background of the room
         setRoomSpritesNames(game);
-        setSpriteHeight();
-    }
+
+        //set the size of the backgroun of the room
+        setRoomSpriteHeight();
+
+        //set the character sprite
+        setCharacterSprite(game);
 
 
-    /**
-     * @return the height of the sprites (the height of the screen minus the height of the buttons).
-     */
-    public int getHeightOfSprites(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return ((size.y)-(size.x)/4);
     }
 
-    /**
-     *
-     * @return the width for the sprites (which is the width of the screen)
-     */
-    public int getWidthOfSprites(){
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        return size.x;
-    }
 
     @Override
     /**
@@ -76,9 +68,10 @@ public class GameDisplay extends ButtonsDisplay {
     /**
      * set the size for the sprites
      */
-    private void setSpriteHeight(){
-        int height = (int)getHeightOfSprites();
-        int width =  (int)getWidthOfSprites();
+    private void setRoomSpriteHeight(){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("ROOM_HEIGHT", 0);
+        int width =  myPreferences.getInt("ROOM_WIDTH", 0);
 
         //**********    WALLS   ***********//
         android.view.ViewGroup.LayoutParams params_wall_east = findViewById(R.id.wall_east).getLayoutParams();
@@ -113,11 +106,11 @@ public class GameDisplay extends ButtonsDisplay {
      * Set the name of the sprites for the room the character is in
      */
     private void setRoomSpritesNames(Game game){
-        int wall_east_ressource = getResId(this.game.wall_east_ressource(), R.drawable.class);
-        int wall_west_ressource = getResId(this.game.wall_west_ressource(), R.drawable.class);
-        int wall_north_ressource = getResId(this.game.wall_north_ressource(), R.drawable.class);
-        int wall_south_ressource = getResId(this.game.wall_south_ressource(), R.drawable.class);
-        int floor_ressource = getResId(this.game.floor_ressource(), R.drawable.class);
+        int wall_east_ressource = getResId(game.getWallEastRessource(), R.drawable.class);
+        int wall_west_ressource = getResId(game.getWallWestRessource(), R.drawable.class);
+        int wall_north_ressource = getResId(game.getWallNorthRessource(), R.drawable.class);
+        int wall_south_ressource = getResId(game.getWallSouthRessource(), R.drawable.class);
+        int floor_ressource = getResId(game.getFloorRessource(), R.drawable.class);
 
         findViewById(R.id.wall_east).setBackgroundResource(wall_east_ressource);
         findViewById(R.id.wall_west).setBackgroundResource(wall_west_ressource);
@@ -132,7 +125,7 @@ public class GameDisplay extends ButtonsDisplay {
      * @param c the class of the ressource you want the idea of
      * @return the ID of the ressource
      */
-    public static int getResId(String resName, Class<?> c) {
+    private static int getResId(String resName, Class<?> c) {
         try {
             Field idField = c.getDeclaredField(resName);
             return idField.getInt(idField);
@@ -141,5 +134,34 @@ public class GameDisplay extends ButtonsDisplay {
             return -1;
         }
     }
+
+    /**
+     *
+     * @param game
+     */
+
+    /**
+     *
+     */
+    private void setCharacterSprite(Game game){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("CHARACTER_HEIGHT", 0);
+        int width = myPreferences.getInt("CHARACTER_WIDTH", 0);
+        int cellHeight = myPreferences.getInt("CELL_HEIGHT", 0);
+        int cellWidth = myPreferences.getInt("CELL_WIDTH", 0);
+        int character_ressource = getResId(game.getCharacterSprite(), R.drawable.class);
+        ImageView character = (ImageView) findViewById(R.id.character);
+
+        ViewGroup.LayoutParams params_character = character.getLayoutParams();
+        params_character.height = height;
+        params_character.width = width;
+
+
+        character.setBackgroundResource(character_ressource);
+        character.setLayoutParams(params_character);
+        character.setX(game.getCharacterX()*cellWidth);
+        character.setY(game.getCharacterY()*cellHeight);
+    }
+
 
 }
