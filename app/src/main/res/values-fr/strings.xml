@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Alptraum</string>
     <string name="app_lang">fr</string>
+    <string name="loading_screen_text">Chargement en cours</string>
     <string name="intro_menu_play">Jouer</string>
     <string name="intro_menu_opt">Options</string>
     <string name="option_menu_french">Français</string>

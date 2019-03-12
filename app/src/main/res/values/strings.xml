@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Alptraum</string>
     <string name="app_lang">en</string>
+    <string name="loading_screen_text">Loading</string>
     <string name="intro_menu_play">Play</string>
     <string name="intro_menu_opt">Options</string>
     <string name="option_menu_french">French</string>
