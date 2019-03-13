@@ -8,7 +8,6 @@
     tools:layout_editor_absoluteY="56dp">
 
 
-
     <ImageView
         android:id="@+id/wall_west"
         android:layout_width="0dp"
@@ -65,6 +64,7 @@
 
     <ImageView
         android:id="@+id/character"
+        android:src="@drawable/character"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,9 +78,11 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/buttons"/>
-
-
+    <include
+        layout="@layout/buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.Game;
@@ -40,6 +41,7 @@ public class GameDisplay extends ButtonsDisplay {
 
         setRoomSpritesNames(game);
         setSpriteHeight();
+        setCharacter();
 
     }
 
@@ -153,6 +155,22 @@ public class GameDisplay extends ButtonsDisplay {
         findViewById(R.id.wall_north).setBackgroundResource(wall_north_ressource);
         findViewById(R.id.wall_south).setBackgroundResource(wall_south_ressource);
         findViewById(R.id.floor).setBackgroundResource(floor_ressource);
+    }
+
+    private void setCharacter(){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("CELL_HEIGHT", 0);
+        int width = myPreferences.getInt("CELL_WIDTH", 0);
+
+        int screenHeight = myPreferences.getInt("GAMEAREA_HEIGHT", 0);
+        int screenWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
+
+        android.view.ViewGroup.LayoutParams params_character = findViewById(R.id.character).getLayoutParams();
+        params_character.height = 2 * height;
+        params_character.width = width;
+        findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
+        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/4));
+        findViewById(R.id.character).setLayoutParams(params_character);
     }
 
     /**

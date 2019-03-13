@@ -51,4 +51,6 @@ public class Game {
         return this.character.getActualRoom().get_floor();
     }
 
+    public Character getCharacter(){ return this.character;}
+
 }
