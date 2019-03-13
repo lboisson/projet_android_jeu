@@ -3,10 +3,13 @@ package com.example.leo.projetandroid.Display;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Display;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.DBContractTest.*;
@@ -34,11 +37,11 @@ public class GameDisplay extends ButtonsDisplay {
         );
 
         setButtonSize();
-
         setRoomSpritesNames(game);
         setSpriteHeight();
+        setCharacter();
 
-        Toast.makeText(this, "Number of rows saved : " + game.getNumberOfRows() + ".", Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -119,6 +122,7 @@ public class GameDisplay extends ButtonsDisplay {
         params_wall_south.width = width;
         findViewById(R.id.wall_south).setLayoutParams(params_wall_south);
 
+
         //*************     FLOOR       ************//
         android.view.ViewGroup.LayoutParams params_floor = findViewById(R.id.floor).getLayoutParams();
         params_floor.height = height;
@@ -142,6 +146,24 @@ public class GameDisplay extends ButtonsDisplay {
         findViewById(R.id.wall_north).setBackgroundResource(wall_north_ressource);
         findViewById(R.id.wall_south).setBackgroundResource(wall_south_ressource);
         findViewById(R.id.floor).setBackgroundResource(floor_ressource);
+    }
+
+    private void setCharacter(){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("CELL_HEIGHT", 0);
+        int width = myPreferences.getInt("CELL_WIDTH", 0);
+
+        int screenHeight = myPreferences.getInt("GAMEAREA_HEIGHT", 0);
+        int screenWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
+
+        android.view.ViewGroup.LayoutParams params_character = findViewById(R.id.character).getLayoutParams();
+        ImageView IVCharacter = findViewById(R.id.character);
+        params_character.height = 2 * height;
+        params_character.width = width;
+        Toast.makeText(this, "Y : " + game.getCharacter().getRoomY() * height * width + ".", Toast.LENGTH_LONG).show();
+        findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
+        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/3));
+        findViewById(R.id.character).setLayoutParams(params_character);
     }
 
     /**
