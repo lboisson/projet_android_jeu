@@ -125,7 +125,7 @@ public class LoadingScreenDisplay extends Activity {
     }
 
     /**
-     * write the size of the button into shared preferences, so that the game doesn't have to get it  again
+     * write the general informations into shared preferences, so that the game doesn't have to get it  again
      */
     private void writeIntoPreferences(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -136,6 +136,7 @@ public class LoadingScreenDisplay extends Activity {
         myEditor.putInt("GAMEAREA_HEIGHT", getHeightOfGameArea());
         myEditor.putInt("GAMEAREA_WIDTH", getWidthOfGameArea());
         myEditor.apply();
+
     }
 
 }
