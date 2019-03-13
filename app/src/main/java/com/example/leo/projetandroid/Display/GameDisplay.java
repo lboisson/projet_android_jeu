@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.leo.projetandroid.Game;
 import com.example.leo.projetandroid.R;
@@ -36,6 +38,22 @@ public class GameDisplay extends ButtonsDisplay {
         setRoomSpritesNames(game);
         setSpriteHeight();
 
+    }
+
+    public void wall_west_Clicked ( View view ) {
+        Toast.makeText( getApplicationContext(), "west", Toast.LENGTH_LONG ).show();
+    }
+
+    public void wall_east_Clicked ( View view ) {
+        Toast.makeText( getApplicationContext(), "east", Toast.LENGTH_LONG ).show();
+    }
+
+    public void wall_south_Clicked ( View view ) {
+        Toast.makeText( getApplicationContext(), "south", Toast.LENGTH_LONG ).show();
+    }
+
+    public void wall_north_Cliked ( View view ) {
+        Toast.makeText( getApplicationContext(), "north", Toast.LENGTH_LONG ).show();
     }
 
     /**

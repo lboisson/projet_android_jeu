@@ -7,6 +7,7 @@
     <string name="intro_menu_opt">Options</string>
     <string name="option_menu_french">French</string>
     <string name="option_menu_english">English</string>
+    <string name="option_menu_cleanDB">Clean DB</string>
     <string name="quit_text">Do you want to close the game ?</string>
     <string name="quit_yes">Yes</string>
     <string name="quit_no">No</string>
