@@ -231,8 +231,6 @@ public class GameDisplay extends ButtonsDisplay {
         if(cellY>19 && cellX>5 && cellX<8){
             Toast.makeText( getApplicationContext(), "south", Toast.LENGTH_LONG ).show();
         }
-
-
     }
 
     /**
@@ -242,12 +240,15 @@ public class GameDisplay extends ButtonsDisplay {
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int height = myPreferences.getInt("CELL_HEIGHT", 0);
         int width = myPreferences.getInt("CELL_WIDTH", 0);
+        int gameAreaHeight = myPreferences.getInt("GAMEAREA_HEIGHT", 0);
+        int gameAreaWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
 
         if(game.getCharacter().getActualRoom().isDoor_east()){
             android.view.ViewGroup.LayoutParams params_door_east = findViewById(R.id.door_east).getLayoutParams();
             params_door_east.height = 2 * height;
             params_door_east.width = 2 * width;
-            findViewById(R.id.door_east).setX((float)11.4*height);
+            //findViewById(R.id.door_east).setX((float)11.4*height);
+            findViewById(R.id.door_east).setX(gameAreaWidth-(2*width));
             findViewById(R.id.door_east).setY((float)10.4*width);
             findViewById(R.id.door_east).setLayoutParams(params_door_east);
         }
@@ -272,7 +273,8 @@ public class GameDisplay extends ButtonsDisplay {
             params_door_south.height = 2 * height;
             params_door_south.width = 2 * width;
             findViewById(R.id.door_south).setX((float)6*width);
-            findViewById(R.id.door_south).setY((float)20.6*width);
+            //findViewById(R.id.door_south).setY((float)20.6*width);
+            findViewById(R.id.door_south).setY(gameAreaHeight-(2*height));
             findViewById(R.id.door_south).setLayoutParams(params_door_south);
         }
     }
