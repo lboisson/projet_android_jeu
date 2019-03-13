@@ -18,8 +18,8 @@ public class Character {
         this.actual_room = room;
         this.characterSprite = "character";
 
-        this.roomX = 7;
-        this.roomY = 7;
+        this.roomX = 2;
+        this.roomY = 1;
 
     }
 
