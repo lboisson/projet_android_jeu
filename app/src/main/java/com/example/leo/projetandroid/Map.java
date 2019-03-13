@@ -11,6 +11,7 @@ public class Map {
     //the list of rooms. first room start at 0.
     private List<Room> listRoom = new ArrayList<>();
     private int numberOfRoom = 0;
+    private int minLong, maxLong, minLat, maxLat;
 
     public SQLiteDatabase ADB;
 
@@ -29,7 +30,7 @@ public class Map {
      * Usage of the singleton pattern for the Map class
      * @return the unique instance of the map
      */
-    public static synchronized Map getInstance( SQLiteDatabase DB){
+    public static synchronized Map getInstance( SQLiteDatabase DB ){
         if(instance == null){
             instance = new Map( DB );
         }
@@ -56,15 +57,24 @@ public class Map {
 
         if ( rowCount == 0 ) {
             Room room = new Room ( 0, 0 );
-            listRoom.add ( room );
+            addRoom ( room );
             saveRoom ( room );
+            this.minLong = 0;
+            this.maxLong = 0;
+            this.minLat = 0;
+            this.maxLat = 0;
+            this.numberOfRoom = 1;
         } else {
 
             cursor.moveToFirst();
-            columnCount = cursor.getColumnCount();
             for ( i = 0; i < rowCount; i++ ) {
                 tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8) );
-                listRoom.add ( tempRoom );
+                addRoom ( tempRoom );
+                if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
+                if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
+                if ( tempRoom.get_longitude() < minLat ) { this.minLat = tempRoom.get_latitude(); }
+                if ( tempRoom.get_longitude() > maxLat ) { this.maxLat = tempRoom.get_latitude(); }
+                this.numberOfRoom += 1;
             }
 
         }
@@ -78,32 +88,6 @@ public class Map {
 
     }
 
-    /* public void saveEverything () {
-        for (int i = 0; i < map.getNumberOfRoom(); i++) {
-            saveRoom( map.getRoom( i ) );
-        }
-    }*/
-
-    /*public int getNumberOfRows () {
-
-        String[] projection = {
-                "Id_Room"
-        };
-
-        Cursor cursor = ADB.query(
-                "t_room",
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        return ( cursor.getCount() );
-
-    }*/
-
     public Room getRoom(int index){
         if ( index > numberOfRoom ) {
             return this.listRoom.get(0); // Return room 0 by default
@@ -111,7 +95,20 @@ public class Map {
         return this.listRoom.get(index);
     }
 
+    public void addRoom( Room room ) {
+        listRoom.add(room);
+    }
+
     public int getNumberOfRoom () {
         return this.numberOfRoom;
     }
+
+    public int getMinLong() { return this.minLong; }
+
+    public int getMaxLong() { return this.maxLong; }
+
+    public int getMinLat() { return this.minLat; }
+
+    public int getMaxLat() { return this.maxLat; }
+
 }
