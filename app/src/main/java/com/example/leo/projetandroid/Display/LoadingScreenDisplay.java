@@ -26,8 +26,8 @@ public class LoadingScreenDisplay extends Activity {
         setContentView(R.layout.activity_loadingscreen_display);
 
         // Set language
-        SharedPreferences APP_LANG = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = APP_LANG.getString("APP_LANG", "findFAIL");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String lang = preferences.getString("APP_LANG", "findFAIL");
         if (!(lang.equals("findFail")) && !(lang.equals(Locale.getDefault().getLanguage()))) {
             Locale myLocale = new Locale(lang);
             Resources res = getResources();
@@ -64,7 +64,7 @@ public class LoadingScreenDisplay extends Activity {
             );
 
             final String Create_table_ROOM =
-                    "CREATE TABLE t_ROOM ("
+                    "CREATE TABLE t_room ("
                             + "Id_Room INTEGER PRIMARY KEY,"
                             + "Long INTEGER,"
                             + "Lat INTEGER,"

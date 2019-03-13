@@ -74,12 +74,10 @@ public class ButtonsDisplay extends Activity {
      * use the equiped object
      */
     public void ObjectButton(View v) {
-        Context context = getApplicationContext();
 
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, "Using your object", duration);
+        Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.not_implemented) , Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER | Gravity.CENTER, 0, 0);
         toast.show();
+
     }
 }

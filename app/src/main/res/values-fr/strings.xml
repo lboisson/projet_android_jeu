@@ -11,4 +11,5 @@
     <string name="quit_text">Voulez vous fermer le jeu ?</string>
     <string name="quit_yes">Oui</string>
     <string name="quit_no">Non</string>
+    <string name="not_implemented">Non implémenté pour l'instant</string>
 </resources>

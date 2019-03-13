@@ -3,9 +3,11 @@ package com.example.leo.projetandroid.Display;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.View;
 import android.widget.Toast;
@@ -84,7 +86,7 @@ public class GameDisplay extends ButtonsDisplay {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.quit_text)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton(R.string.quit_yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finish();
