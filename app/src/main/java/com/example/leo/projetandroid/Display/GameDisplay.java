@@ -157,10 +157,8 @@ public class GameDisplay extends ButtonsDisplay {
         int screenWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
 
         android.view.ViewGroup.LayoutParams params_character = findViewById(R.id.character).getLayoutParams();
-        ImageView IVCharacter = findViewById(R.id.character);
         params_character.height = 2 * height;
         params_character.width = width;
-        Toast.makeText(this, "Y : " + game.getCharacter().getRoomY() * height * width + ".", Toast.LENGTH_LONG).show();
         findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
         findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/3));
         findViewById(R.id.character).setLayoutParams(params_character);
