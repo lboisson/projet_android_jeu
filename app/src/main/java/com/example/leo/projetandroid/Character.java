@@ -50,5 +50,12 @@ public class Character {
         return this.roomX;
     }
 
+    public void setRoomX(int X){
+        this.roomX = X;
+    }
+
+    public void setRoomY(int Y){
+        this.roomY = Y;
+    }
 
 }

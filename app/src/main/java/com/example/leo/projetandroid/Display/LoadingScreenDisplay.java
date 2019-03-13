@@ -100,14 +100,14 @@ public class LoadingScreenDisplay extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        return ((size.x)/14);
+        return (((size.x)/14)+1);
     }
 
     private int getHeightOfCell(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        return (((size.y)-getWidthOfButton())/22);
+        return ((((size.y)-getWidthOfButton())/22)+1);
     }
 
     private int getWidthOfGameArea(){

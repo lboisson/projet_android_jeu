@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,16 +31,32 @@ public class GameDisplay extends ButtonsDisplay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_display);
 
+        //      DATABASE        //
         SQLiteDatabase ADB = openOrCreateDatabase(
                 "ADB.db"
                 , SQLiteDatabase.CREATE_IF_NECESSARY
                 , null
         );
-
         this.game = Game.getInstance( ADB );
 
-        setButtonSize();
 
+        //      TOUCH LISTENER      //
+        View.OnTouchListener handleTouch = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        touchAction(x, y);
+                        break;
+                }
+                return true;
+            }
+        };
+        findViewById(R.id.floor).setOnTouchListener(handleTouch);
+
+        setButtonSize();
         setRoomSpritesNames(game);
         setSpriteHeight();
         setCharacter();
@@ -157,21 +175,22 @@ public class GameDisplay extends ButtonsDisplay {
         findViewById(R.id.floor).setBackgroundResource(floor_ressource);
     }
 
+    /**
+     * set the size and position of the character
+     */
     private void setCharacter(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int height = myPreferences.getInt("CELL_HEIGHT", 0);
         int width = myPreferences.getInt("CELL_WIDTH", 0);
 
-        int screenHeight = myPreferences.getInt("GAMEAREA_HEIGHT", 0);
-        int screenWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
-
         android.view.ViewGroup.LayoutParams params_character = findViewById(R.id.character).getLayoutParams();
         params_character.height = 2 * height;
         params_character.width = width;
         findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
-        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/4));
+        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height));
         findViewById(R.id.character).setLayoutParams(params_character);
     }
+
 
     /**
      * get the ID of a ressource from its name
@@ -187,6 +206,26 @@ public class GameDisplay extends ButtonsDisplay {
             e.printStackTrace();
             return -1;
         }
+    }
+
+    public void touchAction(int x, int y){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("CELL_HEIGHT", 0);
+        int width = myPreferences.getInt("CELL_WIDTH", 0);
+
+        int cellX = x / height;
+        int cellY = y / width;
+        Log.i("TAG", "dans touchaction :" + x + " - " + y + ", " + cellX + " - " + cellY);
+
+        //TODO verify it's within the boundary
+        if(cellX>1 && cellX<12 && cellY>1 && cellY<20) {
+            game.getCharacter().setRoomX(cellX);
+            game.getCharacter().setRoomY(cellY - 1);
+            setCharacter();
+        }
+
+
+        //Toast.makeText( getApplicationContext(), cellX + ", "+ cellY , Toast.LENGTH_LONG ).show();
     }
 
 }
