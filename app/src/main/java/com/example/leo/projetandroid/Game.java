@@ -2,8 +2,6 @@ package com.example.leo.projetandroid;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import java.sql.SQLInput;
-
 public class Game {
 
     private Inventory inventory;

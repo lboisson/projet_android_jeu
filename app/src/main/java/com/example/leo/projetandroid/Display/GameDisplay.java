@@ -33,6 +33,7 @@ public class GameDisplay extends ButtonsDisplay {
                 , SQLiteDatabase.CREATE_IF_NECESSARY
                 , null
         );
+
         this.game = Game.getInstance( ADB );
 
         setButtonSize();

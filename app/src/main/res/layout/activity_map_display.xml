@@ -8,7 +8,7 @@
     <include layout="@layout/buttons"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/map_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/not_implemented"
