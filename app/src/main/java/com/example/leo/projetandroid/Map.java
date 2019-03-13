@@ -83,7 +83,7 @@ public class Map {
 
     private void saveRoom ( Room room ) {
 
-        final String Insert_Data="INSERT INTO t_ROOM VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
+        final String Insert_Data="INSERT INTO t_room VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
         ADB.execSQL(Insert_Data);
 
     }
