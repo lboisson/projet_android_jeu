@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.Game;
@@ -38,7 +37,6 @@ public class GameDisplay extends ButtonsDisplay {
         this.game = Game.getInstance( ADB );
 
         setButtonSize();
-
         setRoomSpritesNames(game);
         setSpriteHeight();
         setCharacter();
@@ -169,7 +167,7 @@ public class GameDisplay extends ButtonsDisplay {
         params_character.height = 2 * height;
         params_character.width = width;
         findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
-        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/4));
+        findViewById(R.id.character).setY(game.getCharacter().getRoomY() * height);
         findViewById(R.id.character).setLayoutParams(params_character);
     }
 
