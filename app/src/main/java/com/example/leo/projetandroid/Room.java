@@ -8,11 +8,11 @@ public class Room {
     private int numberOfSprites = 2;
 
     // the coordinates of the room (used for the map_display)
-    public int latitude;
-    public int longitude;
+    private int latitude;
+    private int longitude;
 
     // the name of the sprites used for this particular room
-    public String floor, wall_east, wall_west, wall_north, wall_south;
+    private String floor, wall_east, wall_west, wall_north, wall_south;
 
     /**
      * constructor of the Room class
@@ -21,7 +21,6 @@ public class Room {
         this.latitude = latitude;
         this.longitude = longitude;
 
-
         this.floor = generateNameRandomSprite("floor");
         this.wall_east = generateNameRandomSprite("wall_east");
         this.wall_west = generateNameRandomSprite("wall_west");
@@ -29,6 +28,16 @@ public class Room {
         this.wall_south = generateNameRandomSprite("wall_south");
     }
 
+    public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north ) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+
+        this.floor = floor;
+        this.wall_west = wall_west;
+        this.wall_east = wall_east;
+        this.wall_south = wall_south;
+        this.wall_north = wall_north;
+    }
 
     /**
      *
@@ -48,9 +57,19 @@ public class Room {
         }
     }
 
-
-
     //        GETTERS         //
+
+    public int get_longitude(){
+        return this.longitude;
+    }
+
+    public int get_latitude(){
+        return this.latitude;
+    }
+
+    public String get_floor(){
+        return this.floor;
+    }
 
     public String get_wall_east(){
         return this.wall_east;
@@ -66,10 +85,6 @@ public class Room {
 
     public String get_wall_south(){
         return this.wall_south;
-    }
-
-    public String get_floor(){
-        return this.floor;
     }
 
 }

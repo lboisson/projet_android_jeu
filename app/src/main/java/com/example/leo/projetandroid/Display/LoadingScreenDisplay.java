@@ -12,16 +12,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.widget.Toast;
 
-import com.example.leo.projetandroid.DBContractTest.*;
 import com.example.leo.projetandroid.R;
 
 import java.util.Locale;
 
 public class LoadingScreenDisplay extends Activity {
-
-    //private DBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +26,10 @@ public class LoadingScreenDisplay extends Activity {
         setContentView(R.layout.activity_loadingscreen_display);
 
         // Set language
-        SharedPreferences APP_LANG = PreferenceManager.getDefaultSharedPreferences(this );
+        SharedPreferences APP_LANG = PreferenceManager.getDefaultSharedPreferences(this);
         String lang = APP_LANG.getString("APP_LANG", "findFAIL");
-        if ( !( lang.equals("findFail") ) && !( lang.equals( Locale.getDefault().getLanguage() ) ) ) {
-            Locale myLocale = new Locale( lang );
+        if (!(lang.equals("findFail")) && !(lang.equals(Locale.getDefault().getLanguage()))) {
+            Locale myLocale = new Locale(lang);
             Resources res = getResources();
             DisplayMetrics dm = res.getDisplayMetrics();
             Configuration conf = res.getConfiguration();
@@ -45,40 +41,31 @@ public class LoadingScreenDisplay extends Activity {
         writeIntoPreferences();
 
         // Create DB
-        createDB();
-        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
-        boolean exist = preferences.getBoolean("FST_LAUNCH", false);
-        Toast.makeText(this, "Exist ? " + exist + ".", Toast.LENGTH_LONG).show();
-        helper = new DBHelper(this, exist);
-        if ( !exist ) {
-            SharedPreferences.Editor DB_EXIST_EDIT = preferences.edit();
-            DB_EXIST_EDIT.putBoolean("FST_LAUNCH", true);
-            DB_EXIST_EDIT.commit();
-        }*/
+        createADB();
 
         Intent intent = new Intent(this, IntroMenuDisplay.class);
         startActivity(intent);
 
         finish();
+
     }
 
     @SuppressLint("WrongConstant")
-    private void createDB() {
-        SQLiteDatabase db;
+    private void createADB() {
 
-        db = openOrCreateDatabase(
-                "ADB.db"
-                , SQLiteDatabase.CREATE_IF_NECESSARY
-                , null
-        );
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean exist = preferences.getBoolean("FST_LAUNCH", false);
-        if ( !exist ) {
+        if (!exist) {
+
+            SQLiteDatabase tempADB = openOrCreateDatabase(
+                    "ADB.db"
+                    , SQLiteDatabase.CREATE_IF_NECESSARY
+                    , null
+            );
 
             final String Create_table_ROOM =
                     "CREATE TABLE t_ROOM ("
-                            + "Id_Room INTEGER PRIMARY KEY AUTOINCREMENT,"
+                            + "Id_Room INTEGER PRIMARY KEY,"
                             + "Long INTEGER,"
                             + "Lat INTEGER,"
                             + "Floor INTEGER,"
@@ -87,7 +74,8 @@ public class LoadingScreenDisplay extends Activity {
                             + "NSW_East TEXT,"
                             + "NSW_South TEXT,"
                             + "NSW_North TEXT);";
-            db.execSQL(Create_table_ROOM);
+
+            tempADB.execSQL(Create_table_ROOM);
 
             SharedPreferences.Editor DB_EXIST_EDIT = preferences.edit();
             DB_EXIST_EDIT.putBoolean("FST_LAUNCH", true);
@@ -96,13 +84,6 @@ public class LoadingScreenDisplay extends Activity {
         }
 
     }
-
-    /*@Override
-    protected void onDestroy() {
-        helper.close();
-        super.onDestroy();
-    }*/
-
 
     /**
      * used to set the size of the bottom buttons
