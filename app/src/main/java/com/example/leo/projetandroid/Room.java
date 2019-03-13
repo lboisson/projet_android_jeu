@@ -14,6 +14,8 @@ public class Room {
     // the name of the sprites used for this particular room
     private String floor, wall_east, wall_west, wall_north, wall_south;
 
+    private int state = 0;
+
     /**
      * constructor of the Room class
      */
@@ -28,7 +30,7 @@ public class Room {
         this.wall_south = generateNameRandomSprite("wall_south");
     }
 
-    public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north ) {
+    public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north, int state ) {
         this.latitude = latitude;
         this.longitude = longitude;
 
@@ -37,6 +39,8 @@ public class Room {
         this.wall_east = wall_east;
         this.wall_south = wall_south;
         this.wall_north = wall_north;
+
+        this.state = state;
     }
 
     /**
@@ -56,6 +60,8 @@ public class Room {
             return spriteName + "_" + randomNumber;
         }
     }
+
+    public void set_Visited() { this.state = 1; }
 
     //        GETTERS         //
 
@@ -86,5 +92,7 @@ public class Room {
     public String get_wall_south(){
         return this.wall_south;
     }
+
+    public int get_state() { return this.state; }
 
 }

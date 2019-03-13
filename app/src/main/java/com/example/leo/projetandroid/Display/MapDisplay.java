@@ -2,18 +2,30 @@ package com.example.leo.projetandroid.Display;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
+import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.example.leo.projetandroid.Map;
 import com.example.leo.projetandroid.R;
+import com.example.leo.projetandroid.Room;
 
 public class MapDisplay extends ButtonsDisplay {
 
     private Map map;
+
+    private int VISITED = Color.parseColor("#FFFFFF");
+    private int UNVISITED = Color.parseColor("#A9A9A9");
+    private int PRESENT = Color.parseColor("#FF2800");
 
     @Override
     @SuppressLint("WrongConstant")
@@ -38,26 +50,49 @@ public class MapDisplay extends ButtonsDisplay {
 
     private void set_TableLayout() {
 
-        TableLayout layout = findViewById(R.id.map_layout);
-
-        int sizeLong = ( map.getMaxLong() ) - ( map.getMinLong() ) + 1;
-        int sizeLat = ( map.getMaxLat() ) - ( map.getMinLat() ) + 1;
-
+        findViewById(R.id.map_layout).setBackgroundColor( Color.parseColor("#000000") );
 
     }
 
     private void set_Map() {
 
-        TableLayout layout = findViewById(R.id.map_layout);
-        for(int i=0;i<10;i++)
-        {
-            ImageView image = new ImageView(this);
-            image.setLayoutParams(new android.view.ViewGroup.LayoutParams(80,60));
-            image.setMaxHeight(20);
-            image.setMaxWidth(20);
+        ConstraintLayout layout = findViewById(R.id.map_layout);
 
-            // Adds the view to the layout
-            layout.addView(image);
+        int heightScreen = 0;
+        int widthScreen = 0;
+
+        int sizeRoom = 30;
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        heightScreen = preferences.getInt("GAMEAREA_HEIGHT", 0);
+        widthScreen = preferences.getInt("GAMEAREA_WIDTH", 0);
+
+        int centerX = ( widthScreen - sizeRoom )/2;
+        int centerY = ( heightScreen - sizeRoom )/2;
+
+        View roomView;
+        LayoutParams params;
+        Room tempRoom;
+
+        for ( int i = 0; i < map.getNumberOfRoom(); i++ ) {
+
+            roomView = new View( this );
+            params = new LayoutParams( sizeRoom, sizeRoom );
+
+            tempRoom = map.getRoom(i);
+
+            roomView.setX(centerX+(tempRoom.get_latitude()*45));
+            roomView.setY(centerY+(tempRoom.get_longitude()*45));
+            roomView.setLayoutParams(params);
+
+            if ( tempRoom.get_state() == 0 ) {
+                roomView.setBackgroundColor(UNVISITED);
+            } else {
+                roomView.setBackgroundColor(VISITED);
+            }
+
+            layout.addView( roomView );
+
         }
 
     }
