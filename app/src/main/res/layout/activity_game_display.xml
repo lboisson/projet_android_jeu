@@ -63,19 +63,43 @@
 
 
     <ImageView
-        android:id="@+id/character"
-        android:src="@drawable/character"
+
+        android:id="@+id/door_east"
+        android:src="@drawable/door"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="90"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/door_west"
+        android:src="@drawable/door"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="270"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/door_south"
+        android:src="@drawable/door"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:rotation="180"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/door_north"
+        android:src="@drawable/door"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageView
-        android:id="@+id/cube"
-        android:src="@drawable/button"
+        android:id="@+id/character"
+        android:src="@drawable/character"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"/>
-
 
     <include
         layout="@layout/buttons"
