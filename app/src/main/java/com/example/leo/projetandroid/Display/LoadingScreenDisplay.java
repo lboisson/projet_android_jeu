@@ -77,8 +77,8 @@ public class LoadingScreenDisplay extends Activity {
         if ( !exist ) {
 
             final String Create_table_ROOM =
-                    "CREATE TABLE t_ROOM ("
-                            + "Id_Room INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    "CREATE TABLE t_room ("
+                            + "Id_Room INTEGER PRIMARY KEY,"
                             + "Long INTEGER,"
                             + "Lat INTEGER,"
                             + "Floor INTEGER,"
@@ -115,14 +115,47 @@ public class LoadingScreenDisplay extends Activity {
         return ((size.x)/4);
     }
 
+    private int getWidthOfCell(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return ((size.x)/14);
+    }
+
+    private int getHeightOfCell(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return (((size.y)-getWidthOfButton())/22);
+    }
+
+    private int getWidthOfGameArea(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size.x;
+    }
+
+    private int getHeightOfGameArea(){
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return ((size.y)-getWidthOfButton());
+    }
+
     /**
-     * write the size of the button into shared preferences, so that the game doesn't have to get it  again
+     * write the general informations into shared preferences, so that the game doesn't have to get it  again
      */
     private void writeIntoPreferences(){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor myEditor = myPreferences.edit();
         myEditor.putInt("BUTTON_SIZE", getWidthOfButton());
+        myEditor.putInt("CELL_HEIGHT", getHeightOfCell());
+        myEditor.putInt("CELL_WIDTH", getWidthOfCell());
+        myEditor.putInt("GAMEAREA_HEIGHT", getHeightOfGameArea());
+        myEditor.putInt("GAMEAREA_WIDTH", getWidthOfGameArea());
         myEditor.apply();
+
     }
 
 }
