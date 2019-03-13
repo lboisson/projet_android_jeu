@@ -187,7 +187,7 @@ public class GameDisplay extends ButtonsDisplay {
         params_character.height = 2 * height;
         params_character.width = width;
         findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
-        findViewById(R.id.character).setY(game.getCharacter().getRoomY() * height);
+        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height)-(height/3));
         findViewById(R.id.character).setLayoutParams(params_character);
     }
 
