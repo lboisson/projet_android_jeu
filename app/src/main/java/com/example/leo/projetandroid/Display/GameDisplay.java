@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.Game;
@@ -55,6 +54,7 @@ public class GameDisplay extends ButtonsDisplay {
             }
         };
         findViewById(R.id.floor).setOnTouchListener(handleTouch);
+
 
         setButtonSize();
         setRoomSpritesNames(game);
@@ -187,7 +187,7 @@ public class GameDisplay extends ButtonsDisplay {
         params_character.height = 2 * height;
         params_character.width = width;
         findViewById(R.id.character).setX(game.getCharacter().getRoomX() * width);
-        findViewById(R.id.character).setY((game.getCharacter().getRoomY() * height));
+        findViewById(R.id.character).setY(game.getCharacter().getRoomY() * height);
         findViewById(R.id.character).setLayoutParams(params_character);
     }
 

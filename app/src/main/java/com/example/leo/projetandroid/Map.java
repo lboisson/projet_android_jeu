@@ -56,9 +56,9 @@ public class Map {
         rowCount = cursor.getCount();
 
         if ( rowCount == 0 ) {
-            Room room = new Room ( 0, 0 );
-            addRoom ( room );
-            saveRoom ( room );
+            tempRoom = new Room ( 0, 0 );
+            addRoom ( tempRoom );
+            saveRoom ( tempRoom );
             this.minLong = 0;
             this.maxLong = 0;
             this.minLat = 0;
@@ -68,7 +68,7 @@ public class Map {
 
             cursor.moveToFirst();
             for ( i = 0; i < rowCount; i++ ) {
-                tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8) );
+                tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
                 addRoom ( tempRoom );
                 if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
                 if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
@@ -83,7 +83,7 @@ public class Map {
 
     private void saveRoom ( Room room ) {
 
-        final String Insert_Data="INSERT INTO t_ROOM VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"')";
+        final String Insert_Data="INSERT INTO t_ROOM VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
         ADB.execSQL(Insert_Data);
 
     }

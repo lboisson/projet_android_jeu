@@ -73,7 +73,8 @@ public class LoadingScreenDisplay extends Activity {
                             + "NSW_West TEXT,"
                             + "NSW_East TEXT,"
                             + "NSW_South TEXT,"
-                            + "NSW_North TEXT);";
+                            + "NSW_North TEXT,"
+                            + "State INTEGER);";
 
             tempADB.execSQL(Create_table_ROOM);
 

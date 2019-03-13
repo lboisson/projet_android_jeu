@@ -9,13 +9,12 @@ public class Character {
     private int roomY;
     private int roomX;
 
-
-
     //used for the singleton implementation
     private static Character instance;
     private Character(Room room){
 
         this.actual_room = room;
+        room.set_Visited();
         this.characterSprite = "character";
 
         this.roomX = 2;
