@@ -60,24 +60,10 @@ public class GameDisplay extends ButtonsDisplay {
         setRoomSpritesNames(game);
         setSpriteHeight();
         setCharacter();
+        setDoors();
 
     }
 
-    public void wall_west_Clicked ( View view ) {
-        Toast.makeText( getApplicationContext(), "west", Toast.LENGTH_LONG ).show();
-    }
-
-    public void wall_east_Clicked ( View view ) {
-        Toast.makeText( getApplicationContext(), "east", Toast.LENGTH_LONG ).show();
-    }
-
-    public void wall_south_Clicked ( View view ) {
-        Toast.makeText( getApplicationContext(), "south", Toast.LENGTH_LONG ).show();
-    }
-
-    public void wall_north_Cliked ( View view ) {
-        Toast.makeText( getApplicationContext(), "north", Toast.LENGTH_LONG ).show();
-    }
 
     /**
      * @return the height of the sprites (the height of the screen minus the height of the buttons).
@@ -208,6 +194,12 @@ public class GameDisplay extends ButtonsDisplay {
         }
     }
 
+    /**
+     *the action when there the gameArea is touched
+     *
+     * @param x the x axis
+     * @param y the y axis
+     */
     public void touchAction(int x, int y){
         SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         int height = myPreferences.getInt("CELL_HEIGHT", 0);
@@ -217,15 +209,71 @@ public class GameDisplay extends ButtonsDisplay {
         int cellY = y / width;
         Log.i("TAG", "dans touchaction :" + x + " - " + y + ", " + cellX + " - " + cellY);
 
-        //TODO verify it's within the boundary
+        // if the touch is inside the moving area of the character
         if(cellX>1 && cellX<12 && cellY>1 && cellY<20) {
             game.getCharacter().setRoomX(cellX);
             game.getCharacter().setRoomY(cellY - 1);
             setCharacter();
         }
 
+        if(cellX<2 && cellY>10 && cellY<13){
+            Toast.makeText( getApplicationContext(), "west", Toast.LENGTH_LONG ).show();
+        }
 
-        //Toast.makeText( getApplicationContext(), cellX + ", "+ cellY , Toast.LENGTH_LONG ).show();
+        if(cellX>11 && cellY>10 && cellY<13){
+            Toast.makeText( getApplicationContext(), "east", Toast.LENGTH_LONG ).show();
+        }
+
+        if(cellY<2 && cellX>5 && cellX<8){
+            Toast.makeText( getApplicationContext(), "north", Toast.LENGTH_LONG ).show();
+        }
+
+        if(cellY>19 && cellX>5 && cellX<8){
+            Toast.makeText( getApplicationContext(), "south", Toast.LENGTH_LONG ).show();
+        }
+
+
     }
 
+    /**
+     *
+     */
+    public void setDoors(){
+        SharedPreferences myPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int height = myPreferences.getInt("CELL_HEIGHT", 0);
+        int width = myPreferences.getInt("CELL_WIDTH", 0);
+
+        if(game.getCharacter().getActualRoom().isDoor_east()){
+            android.view.ViewGroup.LayoutParams params_door_east = findViewById(R.id.door_east).getLayoutParams();
+            params_door_east.height = 2 * height;
+            params_door_east.width = 2 * width;
+            findViewById(R.id.door_east).setX((float)11.4*height);
+            findViewById(R.id.door_east).setY((float)10.4*width);
+            findViewById(R.id.door_east).setLayoutParams(params_door_east);
+        }
+        if(game.getCharacter().getActualRoom().isDoor_west()){
+            android.view.ViewGroup.LayoutParams params_door_west = findViewById(R.id.door_west).getLayoutParams();
+            params_door_west.height = 2 * height;
+            params_door_west.width = 2 * width;
+            findViewById(R.id.door_west).setX(0);
+            findViewById(R.id.door_west).setY((float)10.4*width);
+            findViewById(R.id.door_west).setLayoutParams(params_door_west);
+        }
+        if(game.getCharacter().getActualRoom().isDoor_north()){
+            android.view.ViewGroup.LayoutParams params_door_north = findViewById(R.id.door_north).getLayoutParams();
+            params_door_north.height = 2 * height;
+            params_door_north.width = 2 * width;
+            findViewById(R.id.door_north).setX((float)6*width);
+            findViewById(R.id.door_north).setY(0);
+            findViewById(R.id.door_north).setLayoutParams(params_door_north);
+        }
+        if(game.getCharacter().getActualRoom().isDoor_south()){
+            android.view.ViewGroup.LayoutParams params_door_south = findViewById(R.id.door_south).getLayoutParams();
+            params_door_south.height = 2 * height;
+            params_door_south.width = 2 * width;
+            findViewById(R.id.door_south).setX((float)6*width);
+            findViewById(R.id.door_south).setY((float)20.6*width);
+            findViewById(R.id.door_south).setLayoutParams(params_door_south);
+        }
+    }
 }

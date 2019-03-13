@@ -14,14 +14,22 @@ public class Room {
     // the name of the sprites used for this particular room
     private String floor, wall_east, wall_west, wall_north, wall_south;
 
+    //is there a door ?
+    private boolean door_east, door_west, door_north, door_south;
+
     private int state = 0;
 
     /**
      * constructor of the Room class
      */
-    public Room(int latitude, int longitude){
+    public Room(int latitude, int longitude, boolean door_east, boolean door_north, boolean door_south, boolean door_west){
         this.latitude = latitude;
         this.longitude = longitude;
+
+        this.door_east = door_east;
+        this.door_north = door_north;
+        this.door_south = door_south;
+        this.door_west = door_west;
 
         this.floor = generateNameRandomSprite("floor");
         this.wall_east = generateNameRandomSprite("wall_east");
@@ -30,9 +38,15 @@ public class Room {
         this.wall_south = generateNameRandomSprite("wall_south");
     }
 
-    public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north, int state ) {
+
+    public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north, int state, boolean door_east, boolean door_north, boolean door_south, boolean door_west) {
         this.latitude = latitude;
         this.longitude = longitude;
+
+        this.door_east = door_east;
+        this.door_north = door_north;
+        this.door_south = door_south;
+        this.door_west = door_west;
 
         this.floor = floor;
         this.wall_west = wall_west;
@@ -91,6 +105,22 @@ public class Room {
 
     public String get_wall_south(){
         return this.wall_south;
+    }
+
+    public boolean isDoor_east(){
+        return door_east;
+    }
+
+    public boolean isDoor_west(){
+        return door_west;
+    }
+
+    public boolean isDoor_north(){
+        return door_north;
+    }
+
+    public boolean isDoor_south(){
+        return door_south;
     }
 
     public int get_state() { return this.state; }

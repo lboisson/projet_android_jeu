@@ -37,6 +37,9 @@ public class Map {
         return instance;
     }
 
+    /**
+     *
+     */
     private void loadOrCreate () {
 
         int rowCount, columnCount;
@@ -56,7 +59,7 @@ public class Map {
         rowCount = cursor.getCount();
 
         if ( rowCount == 0 ) {
-            tempRoom = new Room ( 0, 0 );
+            tempRoom = new Room ( 0, 0, true, true, true, true );
             addRoom ( tempRoom );
             saveRoom ( tempRoom );
             this.minLong = 0;
@@ -68,7 +71,7 @@ public class Map {
 
             cursor.moveToFirst();
             for ( i = 0; i < rowCount; i++ ) {
-                tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9));
+                tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), true, true, true, true);
                 addRoom ( tempRoom );
                 if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
                 if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
