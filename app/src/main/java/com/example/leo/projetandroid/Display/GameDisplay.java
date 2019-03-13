@@ -160,9 +160,6 @@ public class GameDisplay extends ButtonsDisplay {
         int height = myPreferences.getInt("CELL_HEIGHT", 0);
         int width = myPreferences.getInt("CELL_WIDTH", 0);
 
-        int screenHeight = myPreferences.getInt("GAMEAREA_HEIGHT", 0);
-        int screenWidth = myPreferences.getInt("GAMEAREA_WIDTH", 0);
-
         android.view.ViewGroup.LayoutParams params_character = findViewById(R.id.character).getLayoutParams();
         params_character.height = 2 * height;
         params_character.width = width;
