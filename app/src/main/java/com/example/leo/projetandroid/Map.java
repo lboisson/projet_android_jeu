@@ -38,6 +38,10 @@ public class Map {
         return instance;
     }
 
+    public static void set_Visited(int Long, int Lat) {
+        Log.i("TAG", "set_VISITED");
+    }
+
     /**
      *
      */

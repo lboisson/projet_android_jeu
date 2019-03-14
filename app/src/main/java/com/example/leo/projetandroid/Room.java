@@ -1,6 +1,10 @@
 package com.example.leo.projetandroid;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.Random;
+
+import com.example.leo.projetandroid.Map;
 
 public class Room {
 
@@ -75,7 +79,13 @@ public class Room {
         }
     }
 
-    public void set_Visited() { this.state = 1; }
+    public void set_Visited() {
+
+        this.state = 1;
+
+        Map.set_Visited( this.longitude, this.latitude );
+
+    }
 
     //        GETTERS         //
 
