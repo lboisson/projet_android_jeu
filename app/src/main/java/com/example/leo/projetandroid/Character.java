@@ -72,4 +72,12 @@ public class Character {
     public void setRoom ( Room room ) {
         this.actual_room = room;
     }
+
+    public boolean isLookingEast(){
+        return lookingEast;
+    }
+
+    public void setLookingEast(boolean lookingEast){
+        this.lookingEast = lookingEast;
+    }
 }
