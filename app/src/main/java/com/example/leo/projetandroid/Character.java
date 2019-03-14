@@ -9,6 +9,8 @@ public class Character {
     private int roomY;
     private int roomX;
 
+    private boolean lookingEast;
+
     //used for the singleton implementation
     private static Character instance;
     private Character(Room room){
@@ -16,6 +18,7 @@ public class Character {
         this.actual_room = room;
         room.set_Visited();
         this.characterSprite = "character";
+        this.lookingEast = false;
 
         this.roomX = 2;
         this.roomY = 18;
@@ -57,4 +60,11 @@ public class Character {
         this.roomY = Y;
     }
 
+    public boolean isLookingEast(){
+        return lookingEast;
+    }
+
+    public void setLookingEast(boolean lookingEast) {
+        this.lookingEast = lookingEast;
+    }
 }
