@@ -1,5 +1,7 @@
 package com.example.leo.projetandroid.Display;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -179,7 +181,7 @@ public class GameDisplay extends ButtonsDisplay {
 
 
     /**
-     * get the ID of a ressource from its name
+     * get the ID of a ressource from its name*
      * @param resName the name of the ressource you want the ID
      * @param c the class of the ressource you want the idea of
      * @return the ID of the ressource
@@ -211,9 +213,20 @@ public class GameDisplay extends ButtonsDisplay {
 
         // if the touch is inside the moving area of the character
         if(cellX>1 && cellX<12 && cellY>1 && cellY<20) {
+
+            View character_view = findViewById(R.id.character);
+
+
+            ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (cellX * width));
+            ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((cellY-1) * height)-(height/3)));
+            AnimatorSet animSetXY = new AnimatorSet();
+            animSetXY.playTogether(animX, animY);
+            animSetXY.start();
+
             game.getCharacter().setRoomX(cellX);
-            game.getCharacter().setRoomY(cellY - 1);
-            setCharacter();
+            game.getCharacter().setRoomY(cellY -1);
+
+            //setCharacter();
         }
 
         if(cellX<2 && cellY>10 && cellY<13){
