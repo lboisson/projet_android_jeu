@@ -83,7 +83,7 @@ public class Room {
 
         this.state = 1;
 
-        Map.set_Visited( this.longitude, this.latitude );
+        Map.set_Visited( this.latitude, this.longitude );
 
     }
 
