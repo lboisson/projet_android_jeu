@@ -1,5 +1,6 @@
 package com.example.leo.projetandroid;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -16,6 +17,8 @@ public class Map {
 
     public SQLiteDatabase ADB;
 
+    private static SQLiteDatabase ADBstatic;
+
     //used for the singleton implementation
     private static Map instance;
 
@@ -24,6 +27,7 @@ public class Map {
      */
     private Map( SQLiteDatabase DB ){
         ADB = DB;
+        ADBstatic = DB;
         loadOrCreateDoors();
     }
 
@@ -39,7 +43,11 @@ public class Map {
     }
 
     public static void set_Visited(int Long, int Lat) {
-        Log.i("TAG", "set_VISITED");
+
+        ContentValues cv = new ContentValues();
+        cv.put("Visited", 1);
+        ADBstatic.update ( "t_room", cv, "Long = ? AND Lat = ?", new String[]{String.valueOf(Long), String.valueOf(Lat)} );
+
     }
 
     /**
