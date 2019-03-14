@@ -69,7 +69,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:rotation="90"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/door_west"
@@ -77,7 +78,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:rotation="270"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/door_south"
@@ -85,14 +87,16 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:rotation="180"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/door_north"
         android:src="@drawable/door"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/character"
@@ -101,14 +105,12 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         android:animateLayoutChanges="true"
-        />
+        tools:ignore="MissingConstraints" />
 
     <include
         layout="@layout/buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 </android.support.constraint.ConstraintLayout>

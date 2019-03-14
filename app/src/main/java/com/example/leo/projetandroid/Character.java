@@ -25,6 +25,8 @@ public class Character {
 
     }
 
+    private Character(){}
+
     /**
      * Usage of the singleton pattern for the Game class
      * @return the unique instance of the game
@@ -32,6 +34,13 @@ public class Character {
     public static synchronized Character getInstance(Room room){
         if(instance == null){
             instance = new Character(room);
+        }
+        return instance;
+    }
+
+    public static synchronized Character getInstance(){
+        if(instance == null){
+            instance = new Character();
         }
         return instance;
     }
@@ -60,11 +69,7 @@ public class Character {
         this.roomY = Y;
     }
 
-    public boolean isLookingEast(){
-        return lookingEast;
-    }
-
-    public void setLookingEast(boolean lookingEast) {
-        this.lookingEast = lookingEast;
+    public void setRoom ( Room room ) {
+        this.actual_room = room;
     }
 }
