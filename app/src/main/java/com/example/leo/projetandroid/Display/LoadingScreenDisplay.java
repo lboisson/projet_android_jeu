@@ -66,8 +66,8 @@ public class LoadingScreenDisplay extends Activity {
             final String Create_table_ROOM =
                     "CREATE TABLE t_room ("
                             + "Id_Room INTEGER PRIMARY KEY AUTOINCREMENT,"
-                            + "Long INTEGER,"
                             + "Lat INTEGER,"
+                            + "Long INTEGER,"
                             + "Floor INTEGER,"
                             + "NS_Floor TEXT,"
                             + "NSW_West TEXT,"
