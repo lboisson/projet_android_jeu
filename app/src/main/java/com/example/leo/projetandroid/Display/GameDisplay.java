@@ -1,5 +1,6 @@
 package com.example.leo.projetandroid.Display;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Toast;
 
 import com.example.leo.projetandroid.Game;
@@ -216,7 +218,6 @@ public class GameDisplay extends ButtonsDisplay {
 
             View character_view = findViewById(R.id.character);
 
-
             ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (cellX * width));
             ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((cellY-1) * height)-(height/3)));
             AnimatorSet animSetXY = new AnimatorSet();
@@ -248,26 +249,34 @@ public class GameDisplay extends ButtonsDisplay {
 
     private void door_west_pressed() {
         game.moveToWest();
-        updateSprites();
         game.getCharacter().getActualRoom().set_Visited();
+        game.getCharacter().setRoomX(11);
+        game.getCharacter().setRoomY(11);
+        updateSprites();
     }
 
     private void door_east_pressed() {
         game.moveToEast();
-        updateSprites();
         game.getCharacter().getActualRoom().set_Visited();
+        game.getCharacter().setRoomX(2);
+        game.getCharacter().setRoomY(11);
+        updateSprites();
     }
 
     private void door_south_pressed() {
         game.moveToSouth();
-        updateSprites();
         game.getCharacter().getActualRoom().set_Visited();
+        game.getCharacter().setRoomX(6);
+        game.getCharacter().setRoomY(1);
+        updateSprites();
     }
 
     private void door_north_pressed() {
         game.moveToNorth();
-        updateSprites();
         game.getCharacter().getActualRoom().set_Visited();
+        game.getCharacter().setRoomX(6);
+        game.getCharacter().setRoomY(18);
+        updateSprites();
     }
 
     private void updateSprites() {
