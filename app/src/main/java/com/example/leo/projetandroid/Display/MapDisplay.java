@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.example.leo.projetandroid.Map;
+import com.example.leo.projetandroid.Character;
 import com.example.leo.projetandroid.R;
 import com.example.leo.projetandroid.Room;
 
@@ -81,8 +82,8 @@ public class MapDisplay extends ButtonsDisplay {
 
             tempRoom = map.getRoom(i);
 
-            roomView.setX(centerX+(tempRoom.get_latitude()*45));
-            roomView.setY(centerY+(tempRoom.get_longitude()*45));
+            roomView.setX(centerX+(tempRoom.get_longitude()*45));
+            roomView.setY(centerY+(tempRoom.get_latitude()*45));
             roomView.setLayoutParams(params);
 
             if ( tempRoom.get_state() == 0 ) {
@@ -94,6 +95,19 @@ public class MapDisplay extends ButtonsDisplay {
             layout.addView( roomView );
 
         }
+
+        tempRoom = Character.getInstance().getActualRoom();
+
+        roomView = new View( this );
+        params = new LayoutParams( sizeRoom, sizeRoom );
+
+        roomView.setX(centerX+(tempRoom.get_longitude()*45));
+        roomView.setY(centerY+(tempRoom.get_latitude()*45));
+        roomView.setLayoutParams(params);
+
+        roomView.setBackgroundColor(PRESENT);
+
+        layout.addView( roomView );
 
     }
 

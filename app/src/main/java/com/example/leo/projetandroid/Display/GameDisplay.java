@@ -217,21 +217,53 @@ public class GameDisplay extends ButtonsDisplay {
         }
 
         if(cellX<2 && cellY>10 && cellY<13){
-            Toast.makeText( getApplicationContext(), "west", Toast.LENGTH_LONG ).show();
+            door_west_pressed();
         }
 
         if(cellX>11 && cellY>10 && cellY<13){
-            Toast.makeText( getApplicationContext(), "east", Toast.LENGTH_LONG ).show();
+            door_east_pressed();
         }
 
         if(cellY<2 && cellX>5 && cellX<8){
-            Toast.makeText( getApplicationContext(), "north", Toast.LENGTH_LONG ).show();
+            door_north_pressed();
         }
 
         if(cellY>19 && cellX>5 && cellX<8){
-            Toast.makeText( getApplicationContext(), "south", Toast.LENGTH_LONG ).show();
+            door_south_pressed();
         }
     }
+
+    private void door_west_pressed() {
+        game.moveToWest();
+        updateSprites();
+        game.getCharacter().getActualRoom().set_Visited();
+    }
+
+    private void door_east_pressed() {
+        game.moveToEast();
+        updateSprites();
+        game.getCharacter().getActualRoom().set_Visited();
+    }
+
+    private void door_south_pressed() {
+        game.moveToSouth();
+        updateSprites();
+        game.getCharacter().getActualRoom().set_Visited();
+    }
+
+    private void door_north_pressed() {
+        game.moveToNorth();
+        updateSprites();
+        game.getCharacter().getActualRoom().set_Visited();
+    }
+
+    private void updateSprites() {
+        setRoomSpritesNames(game);
+        setCharacter();
+        setDoors();
+    }
+
+
 
     /**
      *

@@ -23,7 +23,7 @@ public class Map {
      */
     private Map( SQLiteDatabase DB ){
         ADB = DB;
-        loadOrCreate();
+        loadOrCreateDoors();
     }
 
     /**
@@ -40,7 +40,7 @@ public class Map {
     /**
      *
      */
-    private void loadOrCreate () {
+    private void loadOrCreateDoors () {
 
         int rowCount, columnCount;
         int i, j;
@@ -62,29 +62,43 @@ public class Map {
             tempRoom = new Room ( 0, 0, true, true, true, true );
             addRoom ( tempRoom );
             saveRoom ( tempRoom );
-            this.minLong = 0;
-            this.maxLong = 0;
-            this.minLat = 0;
-            this.maxLat = 0;
-            this.numberOfRoom = 1;
+            tempRoom = new Room ( -1, 0, true, true, true, true );
+            addRoom ( tempRoom );
+            saveRoom ( tempRoom );
+            tempRoom = new Room ( 1, 0, true, true, true, true );
+            addRoom ( tempRoom );
+            saveRoom ( tempRoom );
+            tempRoom = new Room ( 0, -1, true, true, true, true );
+            addRoom ( tempRoom );
+            saveRoom ( tempRoom );
+            tempRoom = new Room ( 0, 1, true, true, true, true );
+            addRoom ( tempRoom );
+            saveRoom ( tempRoom );
+            this.minLong = -1;
+            this.maxLong = 1;
+            this.minLat = -1;
+            this.maxLat = 1;
+            this.numberOfRoom = 5;
         } else {
 
             cursor.moveToFirst();
             for ( i = 0; i < rowCount; i++ ) {
                 tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), true, true, true, true);
                 addRoom ( tempRoom );
-                if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
+                /*if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
                 if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
                 if ( tempRoom.get_longitude() < minLat ) { this.minLat = tempRoom.get_latitude(); }
-                if ( tempRoom.get_longitude() > maxLat ) { this.maxLat = tempRoom.get_latitude(); }
-                this.numberOfRoom += 1;
+                if ( tempRoom.get_longitude() > maxLat ) { this.maxLat = tempRoom.get_latitude(); }*/
+                incrNbRooms();
             }
+
+            updateMinMaxLongLat();
 
         }
 
     }
 
-    private void saveRoom ( Room room ) {
+    public void saveRoom ( Room room ) {
 
         final String Insert_Data="INSERT INTO t_room VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
         ADB.execSQL(Insert_Data);
@@ -93,9 +107,21 @@ public class Map {
 
     public Room getRoom(int index){
         if ( index > numberOfRoom ) {
-            return this.listRoom.get(0); // Return room 0 by default
+            return null;
         }
         return this.listRoom.get(index);
+    }
+
+    public Room getRoom( int Lat, int Long ) {
+
+        Room room = null;
+
+        for ( int i = 0; i < getNumberOfRoom(); i++ ) {
+            room = getRoom(i);
+            if ( ( room.get_longitude() == Long ) && ( room.get_latitude() == Lat ) ) { return room; }
+        }
+
+        return null;
     }
 
     public void addRoom( Room room ) {
@@ -106,6 +132,22 @@ public class Map {
         return this.numberOfRoom;
     }
 
+    public void updateMinMaxLongLat () {
+
+        Room tempRoom;
+
+        for ( int i = 0; i < getNumberOfRoom(); i++ ) {
+
+            tempRoom = getRoom ( i );
+
+            if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
+            if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
+            if ( tempRoom.get_longitude() < minLat ) { this.minLat = tempRoom.get_latitude(); }
+            if ( tempRoom.get_longitude() > maxLat ) { this.maxLat = tempRoom.get_latitude(); }
+
+        }
+    }
+
     public int getMinLong() { return this.minLong; }
 
     public int getMaxLong() { return this.maxLong; }
@@ -113,5 +155,7 @@ public class Map {
     public int getMinLat() { return this.minLat; }
 
     public int getMaxLat() { return this.maxLat; }
+
+    public void incrNbRooms() { this.numberOfRoom += 1; }
 
 }
