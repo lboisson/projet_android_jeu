@@ -218,6 +218,8 @@ public class GameDisplay extends ButtonsDisplay {
 
             View character_view = findViewById(R.id.character);
 
+
+
             ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (cellX * width));
             ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((cellY-1) * height)-(height/3)));
             AnimatorSet animSetXY = new AnimatorSet();
