@@ -46,7 +46,7 @@ public class Map {
 
         ContentValues cv = new ContentValues();
         cv.put("Visited", 1);
-        ADBstatic.update ( "t_room", cv, "Lat = ? AND Ling = ?", new String[]{String.valueOf(Lat), String.valueOf(Long)} );
+        ADBstatic.update ( "t_room", cv, "Lat = ? AND Long = ?", new String[]{String.valueOf(Lat), String.valueOf(Long)} );
 
     }
 
