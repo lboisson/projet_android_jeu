@@ -42,11 +42,11 @@ public class Map {
         return instance;
     }
 
-    public static void set_Visited(int Long, int Lat) {
+    public static void set_Visited(int Lat, int Long) {
 
         ContentValues cv = new ContentValues();
         cv.put("Visited", 1);
-        ADBstatic.update ( "t_room", cv, "Long = ? AND Lat = ?", new String[]{String.valueOf(Long), String.valueOf(Lat)} );
+        ADBstatic.update ( "t_room", cv, "Lat = ? AND Ling = ?", new String[]{String.valueOf(Lat), String.valueOf(Long)} );
 
     }
 
@@ -117,7 +117,7 @@ public class Map {
 
     public void saveRoom ( Room room ) {
 
-        final String Insert_Data="INSERT INTO t_room VALUES (NULL,"+room.get_longitude()+","+room.get_latitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
+        final String Insert_Data="INSERT INTO t_room VALUES (NULL,"+room.get_latitude()+","+room.get_longitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
         ADB.execSQL(Insert_Data);
 
     }
@@ -131,7 +131,7 @@ public class Map {
 
     public Room getRoom( int Lat, int Long ) {
 
-        Room room = null;
+        Room room;
 
         for ( int i = 0; i < getNumberOfRoom(); i++ ) {
             room = getRoom(i);
