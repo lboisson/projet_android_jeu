@@ -96,15 +96,9 @@ public class Map {
         } else {
 
             cursor.moveToFirst();
-            Log.i("TAG", "NO ROW HAS BEEN SEEN");
             for ( i = 0; i < rowCount; i++ ) {
-                Log.i("TAG", "ONE ROW HAS BEEN SEEN");
                 tempRoom = new Room ( cursor.getInt(1), cursor.getInt(2), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(9), true, true, true, true);
                 addRoom ( tempRoom );
-                /*if ( tempRoom.get_longitude() < minLong ) { this.minLong = tempRoom.get_longitude(); }
-                if ( tempRoom.get_longitude() > maxLong ) { this.maxLong = tempRoom.get_longitude(); }
-                if ( tempRoom.get_longitude() < minLat ) { this.minLat = tempRoom.get_latitude(); }
-                if ( tempRoom.get_longitude() > maxLat ) { this.maxLat = tempRoom.get_latitude(); }*/
                 incrNbRooms();
                 cursor.moveToNext();
             }
