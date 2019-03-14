@@ -231,19 +231,143 @@ public class GameDisplay extends ButtonsDisplay {
         }
 
         if(cellX<2 && cellY>10 && cellY<13){
-            door_west_pressed();
+
+            View character_view = findViewById(R.id.character);
+
+            ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (2 * width));
+            ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((11) * height)-(height/3)));
+            AnimatorSet animSetXY = new AnimatorSet();
+            animSetXY.playTogether(animX, animY);
+            animSetXY.start();
+
+            animSetXY.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator a) {
+                    door_west_pressed();
+                }
+
+                @Override
+                public void onAnimationStart(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator a) {
+
+                }
+
+            });
+
         }
 
         if(cellX>11 && cellY>10 && cellY<13){
-            door_east_pressed();
+
+            View character_view = findViewById(R.id.character);
+
+            ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (11 * width));
+            ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((11) * height)-(height/3)));
+            AnimatorSet animSetXY = new AnimatorSet();
+            animSetXY.playTogether(animX, animY);
+            animSetXY.start();
+
+            animSetXY.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator a) {
+                    door_east_pressed();
+                }
+
+                @Override
+                public void onAnimationStart(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator a) {
+
+                }
+
+            });
+
         }
 
         if(cellY<2 && cellX>5 && cellX<8){
-            door_north_pressed();
+
+            View character_view = findViewById(R.id.character);
+
+            ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (6 * width));
+            ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((1) * height)-(height/3)));
+            AnimatorSet animSetXY = new AnimatorSet();
+            animSetXY.playTogether(animX, animY);
+            animSetXY.start();
+
+            animSetXY.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator a) {
+                    door_north_pressed();
+                }
+
+                @Override
+                public void onAnimationStart(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator a) {
+
+                }
+
+            });
+
         }
 
         if(cellY>19 && cellX>5 && cellX<8){
-            door_south_pressed();
+
+            View character_view = findViewById(R.id.character);
+
+            ObjectAnimator animX = ObjectAnimator.ofFloat(character_view, "x", (game.getCharacter().getRoomX()*width), (6 * width));
+            ObjectAnimator animY = ObjectAnimator.ofFloat(character_view, "y",  ((game.getCharacter().getRoomY()*height)-(height/3)), (((18) * height)-(height/3)));
+            AnimatorSet animSetXY = new AnimatorSet();
+            animSetXY.playTogether(animX, animY);
+            animSetXY.start();
+
+            animSetXY.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationEnd(Animator a) {
+                    door_south_pressed();
+                }
+
+                @Override
+                public void onAnimationStart(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator a) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator a) {
+
+                }
+
+            });
+
         }
     }
 
