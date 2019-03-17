@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,6 +28,7 @@ public class MapDisplay extends ButtonsDisplay {
     private int VISITED = Color.parseColor("#FFFFFF");
     private int UNVISITED = Color.parseColor("#A9A9A9");
     private int PRESENT = Color.parseColor("#FF2800");
+    private int BACKGROUND = Color.parseColor("#000000");
 
     @Override
     @SuppressLint("WrongConstant")
@@ -41,17 +43,19 @@ public class MapDisplay extends ButtonsDisplay {
         );
         this.map = Map.getInstance( ADB );
 
-        set_TableLayout();
+        set_ColorLayout();
         set_Map();
 
         setButtonSize();
 
         findViewById(R.id.button_map).setBackgroundResource(R.drawable.button_clicked);
+
     }
 
-    private void set_TableLayout() {
 
-        findViewById(R.id.map_layout).setBackgroundColor( Color.parseColor("#000000") );
+    private void set_ColorLayout() {
+
+        findViewById(R.id.map_layout).setBackgroundColor( BACKGROUND );
 
     }
 
@@ -59,8 +63,8 @@ public class MapDisplay extends ButtonsDisplay {
 
         ConstraintLayout layout = findViewById(R.id.map_layout);
 
-        int heightScreen = 0;
-        int widthScreen = 0;
+        int heightScreen;
+        int widthScreen;
 
         int sizeRoom = 30;
 
@@ -70,6 +74,10 @@ public class MapDisplay extends ButtonsDisplay {
 
         int centerX = ( widthScreen - sizeRoom )/2;
         int centerY = ( heightScreen - sizeRoom )/2;
+
+        Room characRoom = Character.getInstance().getActualRoom();
+        int characLat = characRoom.get_latitude();
+        int characLong = characRoom.get_longitude();
 
         View roomView;
         LayoutParams params;
@@ -82,8 +90,8 @@ public class MapDisplay extends ButtonsDisplay {
 
             tempRoom = map.getRoom(i);
 
-            roomView.setX(centerX+(tempRoom.get_longitude()*45));
-            roomView.setY(centerY+(tempRoom.get_latitude()*45));
+            roomView.setX(centerX+((tempRoom.get_longitude()-characLong)*45));
+            roomView.setY(centerY+((tempRoom.get_latitude()-characLat)*45));
             roomView.setLayoutParams(params);
 
             if ( tempRoom.get_state() == 0 ) {
@@ -96,13 +104,11 @@ public class MapDisplay extends ButtonsDisplay {
 
         }
 
-        tempRoom = Character.getInstance().getActualRoom();
-
         roomView = new View( this );
         params = new LayoutParams( sizeRoom, sizeRoom );
 
-        roomView.setX(centerX+(tempRoom.get_longitude()*45));
-        roomView.setY(centerY+(tempRoom.get_latitude()*45));
+        roomView.setX(centerX);
+        roomView.setY(centerY);
         roomView.setLayoutParams(params);
 
         roomView.setBackgroundColor(PRESENT);
