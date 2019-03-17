@@ -41,6 +41,10 @@ public class OptionDisplay extends Activity {
         setLang( "fr" );
     }
 
+    /**
+     * Clean the Database, used for testing purposes
+     * @param v
+     */
     @SuppressLint("WrongConstant")
     public void onCleanDBClicked(View v) {
 
@@ -54,6 +58,10 @@ public class OptionDisplay extends Activity {
 
     }
 
+    /**
+     * Set the language to the one passed in lang
+     * @param lang language desired
+     */
     private void setLang ( String lang ) {
         Locale myLocale = new Locale( lang );
         Resources res = getResources();

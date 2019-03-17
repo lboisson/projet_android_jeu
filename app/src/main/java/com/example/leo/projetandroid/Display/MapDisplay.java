@@ -43,22 +43,29 @@ public class MapDisplay extends ButtonsDisplay {
         );
         this.map = Map.getInstance( ADB );
 
+        // Set the map
         set_ColorLayout();
         set_Map();
 
+        // Set the buttons
         setButtonSize();
-
         findViewById(R.id.button_map).setBackgroundResource(R.drawable.button_clicked);
 
     }
 
 
+    /**
+     * Set the background color for the map
+     */
     private void set_ColorLayout() {
 
         findViewById(R.id.map_layout).setBackgroundColor( BACKGROUND );
 
     }
 
+    /**
+     * Create and print all the rooms
+     */
     private void set_Map() {
 
         ConstraintLayout layout = findViewById(R.id.map_layout);
@@ -83,6 +90,7 @@ public class MapDisplay extends ButtonsDisplay {
         LayoutParams params;
         Room tempRoom;
 
+        // Go through all the room and set them each in a View
         for ( int i = 0; i < map.getNumberOfRoom(); i++ ) {
 
             roomView = new View( this );
@@ -104,6 +112,7 @@ public class MapDisplay extends ButtonsDisplay {
 
         }
 
+        // Set the character room
         roomView = new View( this );
         params = new LayoutParams( sizeRoom, sizeRoom );
 

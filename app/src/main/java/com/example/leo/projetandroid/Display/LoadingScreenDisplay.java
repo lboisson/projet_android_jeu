@@ -50,6 +50,9 @@ public class LoadingScreenDisplay extends Activity {
 
     }
 
+    /**
+     * Create the Database and all the table if it's the first time the application is launched
+     */
     @SuppressLint("WrongConstant")
     private void createADB() {
 
@@ -97,6 +100,10 @@ public class LoadingScreenDisplay extends Activity {
         return ((size.x)/4);
     }
 
+    /**
+     * get the width of a cell
+     * @return 1/14 of the width of the screen
+     */
     private int getWidthOfCell(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -104,6 +111,10 @@ public class LoadingScreenDisplay extends Activity {
         return (((size.x)/14)+1);
     }
 
+    /**
+     * get the height of a cell
+     * @return 1/22 of the width of the screen minus the buttons
+     */
     private int getHeightOfCell(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -111,6 +122,10 @@ public class LoadingScreenDisplay extends Activity {
         return ((((size.y)-getWidthOfButton())/22)+1);
     }
 
+    /**
+     * get the width of the game area
+     * @return the width of the screen
+     */
     private int getWidthOfGameArea(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -118,6 +133,10 @@ public class LoadingScreenDisplay extends Activity {
         return size.x;
     }
 
+    /**
+     * get the height of the game area
+     * @return the width of the screen minus the buttons
+     */
     private int getHeightOfGameArea(){
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();

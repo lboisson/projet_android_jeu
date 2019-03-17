@@ -33,6 +33,9 @@ public class Game {
         return instance;
     }
 
+    // The following 4 methods move the character to the next room ( west go to the left one and etc )
+    // Could be done by one method probably
+
     public void moveToWest() {
 
         Room tempRoom = character.getActualRoom();

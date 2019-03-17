@@ -28,7 +28,7 @@ public class Map {
     private Map( SQLiteDatabase DB ){
         ADB = DB;
         ADBstatic = DB;
-        loadOrCreateDoors();
+        loadOrCreateRooms();
     }
 
     /**
@@ -42,6 +42,11 @@ public class Map {
         return instance;
     }
 
+    /**
+     * Set the room corresponding to Lat/Long to Visited
+     * @param Lat Latitude of the room
+     * @param Long Longitude of the room
+     */
     public static void set_Visited(int Lat, int Long) {
 
         ContentValues cv = new ContentValues();
@@ -51,9 +56,9 @@ public class Map {
     }
 
     /**
-     *
+     * Load all the rooms from the Database and if it is empty, create the first 5 rooms ( center, up, down, left, right ), load them and save them
      */
-    private void loadOrCreateDoors () {
+    private void loadOrCreateRooms () {
 
         int rowCount;
         int i;
@@ -109,6 +114,10 @@ public class Map {
 
     }
 
+    /**
+     * Save room in the Database
+     * @param room room that has to be saved
+     */
     public void saveRoom ( Room room ) {
 
         final String Insert_Data="INSERT INTO t_room VALUES (NULL,"+room.get_latitude()+","+room.get_longitude()+",0,'"+room.get_floor()+"','"+room.get_wall_west()+"','"+room.get_wall_east()+"','"+room.get_wall_south()+"','"+room.get_wall_north()+"','"+room.get_state()+"')";
@@ -116,6 +125,11 @@ public class Map {
 
     }
 
+    /**
+     * get the room corresponding to the index
+     * @param index index of the room
+     * @return the room
+     */
     public Room getRoom(int index){
         if ( index > numberOfRoom ) {
             return null;
@@ -123,6 +137,12 @@ public class Map {
         return this.listRoom.get(index);
     }
 
+    /**
+     * get the room corresponding to the Latitude / Longitude passed
+     * @param Lat Latitude of the room
+     * @param Long Longitude of the room
+     * @return the room
+     */
     public Room getRoom( int Lat, int Long ) {
 
         Room room;
@@ -135,14 +155,25 @@ public class Map {
         return null;
     }
 
+    /**
+     * Add the room in the list of room
+     * @param room room that has to be saved
+     */
     public void addRoom( Room room ) {
         listRoom.add(room);
     }
 
+    /**
+     * Get the number of rooms in the list of room
+     * @return the number
+     */
     public int getNumberOfRoom () {
         return this.numberOfRoom;
     }
 
+    /**
+     * Update MinMax values for Latitude/Longitude, used in MapDisplay
+     */
     public void updateMinMaxLongLat () {
 
         Room tempRoom;

@@ -80,7 +80,6 @@ public class GameDisplay extends ButtonsDisplay {
     }
 
     /**
-     *
      * @return the width for the sprites (which is the width of the screen)
      */
     public int getWidthOfSprites(){

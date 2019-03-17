@@ -42,7 +42,9 @@ public class Room {
         this.wall_south = generateNameRandomSprite("wall_south");
     }
 
-
+    /**
+     * constructor of the Room class
+     */
     public Room(int latitude, int longitude, String floor, String wall_west, String wall_east, String wall_south, String wall_north, int state, boolean door_east, boolean door_north, boolean door_south, boolean door_west) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -62,7 +64,6 @@ public class Room {
     }
 
     /**
-     *
      * @param spriteName
      * @return
      */
